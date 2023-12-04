@@ -1,0 +1,19 @@
+{
+    "name": "project-2",
+    "version": "1.0.0",
+    "description": "# About my Project",
+    "main": "server.js",
+    "scripts": {
+        "test": "jest",
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "ejs": "^3.1.9",
+        "express": "^4.18.2",
+        "morgan": "^1.10.0"
+    },
+    "devDependencies": {
+        "dotenv": "^16.3.1",
+        "nodemon": "^3.0.2"
+    }
+}
