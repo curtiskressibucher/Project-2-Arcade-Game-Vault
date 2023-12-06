@@ -1,0 +1,461 @@
+/* || Imports */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+/* || General styles */
+
+* {
+    color: white;
+}
+
+/* ----------------------------------------------------------- */
+
+/* || Init index logo styles */
+
+.body-logo {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000;
+}
+
+.logo {
+    position: absolute;
+    width: 700px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards 0.5s;
+}
+
+.logo img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: transparent;
+}
+
+@keyframes flicker1 {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes flicker2 {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+}
+
+@keyframes flicker3 {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0;
+    }
+}
+
+@keyframes flicker4 {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    45% {
+        opacity: 0;
+    }
+}
+
+@keyframes flicker5 {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.img1 {
+    z-index: 1;
+    animation: flicker1 0.5s 3 alternate 0.3s;
+}
+
+.img2 {
+    z-index: 2;
+    animation: flicker2 0.5s 3 alternate 0.3s;
+}
+
+.img3 {
+    z-index: 3;
+    animation: flicker3 0.4s 3 alternate 0.5s;
+}
+
+.img4 {
+    z-index: 4;
+    animation: flicker4 0.5s 3 alternate 0.5s;
+}
+
+.img5 {
+    z-index: 5;
+    animation: flicker5 0.5s 3 alternate 0.5s;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* Reset and Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+body,
+h1,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+}
+.home-page {
+    background: url(../images/Generate_a_darkthemed_sophisticated_background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+}
+body {
+    background-color: #000;
+    font-family: 'Orbitron', 'Arial', sans-serif;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    color: #fff;
+    padding: 5px 20px;
+    height: 60px;
+    position: relative;
+}
+
+nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#474747, transparent);
+    z-index: -1;
+    transition: 0.2s ease;
+}
+
+.Logo {
+    width: 500px;
+    height: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.Logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+}
+
+.links a {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+    border-radius: 5px;
+    transition: background-color 0.5s, color 0.3s;
+}
+
+.links a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.burger-menu {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    background-color: #333;
+    width: 100px;
+    right: 2px;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: #000;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Media Queries  */
+@media screen and (max-width: 650px) {
+    .links {
+        display: none;
+    }
+
+    .burger-menu {
+        display: block;
+        justify-content: end;
+    }
+
+    .burger-menu.active + .dropdown-menu,
+    .dropdown-menu.active {
+        display: flex;
+        justify-content: end;
+    }
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 150px;
+    color: white;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 150px;
+}
+
+.login-button button {
+    font-family: 'Orbitron', 'Arial', sans-serif;
+    padding: 10px 30px;
+    background-color: #333;
+    color: #eee;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-button button:hover {
+    background-color: #555;
+}
+
+/* Web Feature Styles */
+.web-feat {
+    height: 350px;
+    margin-top: 500px;
+    display: flex;
+}
+
+#game-vault,
+#Reviews,
+#Tips-Tricks {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    width: 300px;
+    max-width: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px auto;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    background-position: center;
+}
+
+#game-vault:hover,
+#Reviews:hover,
+#Tips-Tricks:hover {
+    transform: scale(1.03);
+}
+
+#game-vault::before,
+#Reviews::before,
+#Tips-Tricks::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        transparent,
+        transparent,
+        rgba(0, 0, 0, 0.5)
+    );
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+#game-vault {
+    background-image: url(../images/Gamer-Vault.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#Reviews {
+    background-image: url(../images/Game-reviews.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#Tips-Tricks {
+    background-image: url(../images/Gamer-tips.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.web-feat-button {
+    font-family: 'Orbitron', 'Arial', sans-serif;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4a4a4a;
+    border: 3px solid rgb(255, 255, 255);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    margin-top: 250px;
+    height: 30px;
+    width: auto;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.web-feat-button:hover {
+    background-color: #555;
+}
+
+/* Footer Styles */
+footer {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    bottom: 0;
+    width: auto;
+}
+
+/* Responsive Styles  */
+@media screen and (max-width: 365px) {
+    body {
+        background-size: contain;
+    }
+
+    nav {
+        padding: 5px 10px;
+    }
+
+    .Logo img {
+        max-width: 150px;
+    }
+
+    .links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #333;
+        width: 100%;
+    }
+
+    .links a {
+        margin: 0;
+    }
+
+    .burger-menu {
+        display: block;
+    }
+
+    .burger-menu.active + .links {
+        display: flex;
+    }
+
+    .dropdown-menu {
+        top: 60px;
+        right: 0;
+        width: 100%;
+    }
+
+    .web-feat {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    #game-vault,
+    #Reviews,
+    #Tips-Tricks {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .web-feat-button {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #game-vault,
+    #Reviews,
+    #Tips-Tricks {
+        width: 100%;
+        max-width: 100%;
+        margin: 10px 0;
+    }
+}
+/* ---------------------------------------------------------------------------------------------- */

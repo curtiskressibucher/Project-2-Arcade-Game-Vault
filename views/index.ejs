@@ -3,9 +3,58 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>test</title>
+        <title>Arcade Game Vault</title>
+        <link rel="stylesheet" href="style/style.css" />
     </head>
-    <body>
-        <h1>test</h1>
+    <body class="home-page">
+        <nav>
+            <div class="links">
+                <a href="/home">Home</a>
+                <a href="#">About</a>
+                <a href="#">Login</a>
+            </div>
+            <div class="burger-menu">&#9776;</div>
+        </nav>
+        <div class="dropdown-menu">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Login</a>
+        </div>
+        <header>
+            <div class="Logo">
+                <img src="/images/Arcade-gaming-vault-logo.png" alt="Logo" />
+            </div>
+        </header>
+
+        <div class="login-button">
+            <button>LOGIN</button>
+        </div>
+
+        <div class="web-feat">
+            <div id="game-vault">
+                <button class="web-feat-button">Game Vault</button>
+            </div>
+            <div id="Reviews">
+                <button class="web-feat-button">Reviews</button>
+            </div>
+            <div id="Tips-Tricks">
+                <button class="web-feat-button">Tips and Tricks</button>
+            </div>
+        </div>
+
+        <footer>&copy; 2023 Arcade Game Vault. All rights reserved.</footer>
     </body>
 </html>
+
+<!-- Temporary need to move  -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const burgerMenu = document.querySelector('.burger-menu');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        burgerMenu.addEventListener('click', function () {
+            burgerMenu.classList.toggle('active');
+            dropdownMenu.classList.toggle('active');
+        });
+    });
+</script>
