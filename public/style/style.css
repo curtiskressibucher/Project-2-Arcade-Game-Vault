@@ -7,6 +7,12 @@
     color: white;
 }
 
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* ----------------------------------------------------------- */
 
 /* || Init index logo styles */
@@ -133,7 +139,7 @@ ul {
     margin: 0;
     padding: 0;
 }
-.home-page {
+.page-background {
     background: url(../images/Generate_a_darkthemed_sophisticated_background.jpg);
     background-size: cover;
     background-position: center;
@@ -344,7 +350,7 @@ header {
 }
 
 #Reviews {
-    background-image: url(../images/Game-reviews.jpeg);
+    background-image: url(../images/Game-reviews2.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -373,6 +379,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 
 .web-feat-button:hover {
@@ -459,3 +466,39 @@ footer {
     }
 }
 /* ---------------------------------------------------------------------------------------------- */
+/* Style the entire game library  */
+
+.game-tile:nth-child(even) {
+    background-color: rgb(0, 0, 0);
+}
+
+.game-tile:nth-child(odd) {
+    background-color: #000000;
+}
+
+.game-tile {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px;
+}
+
+.game-library {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#new-game {
+    display: inline-flex;
+    padding: 8px 16px; /* Adjust the padding as needed */
+    font-size: 14px; /* Adjust the font size as needed */
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: #fff;
+}
+#new-game:hover {
+    background-color: #45a049;
+    color: #fff;
+}

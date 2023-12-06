@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<body>
+    <h1 class="">Vault</h1>
+
+    <div class="game-library">
+    <% games.forEach(function(game) { %>
+        <div class="game-tile">
+            <h3><%= game.title %></h3>
+            <p><strong>Genre:</strong> <%= game.genre %></p>
+            <p><strong>Platform:</strong> <%= game.platform %></p>
+            <p><strong>Release Year:</strong> <%= game.releaseYear.toISOString().split('T')[0] %></p>
+        </div>
+    <% }); %>
+</div>
+<a href="/games/new" class="web-feat-button" id="new-game">New game</a>
+</body>
+<%- include('../partials/footer') %>
