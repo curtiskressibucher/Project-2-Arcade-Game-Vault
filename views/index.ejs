@@ -36,7 +36,8 @@
         </header>
 
         <% if(user) { %>
-        <h2 class="login-button">Welcome to your vault <%= user.name %></h2>
+        <h2 class="login-button">Welcome to your vault</h2>
+        <h1><%= user.name %></h1>
         <% } else { %>
         <div class="login-button">
             <a href="/login">LOGIN</a>
