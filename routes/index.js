@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 router.get('/', (req, res) => {
     res.render('logo.ejs');
@@ -15,6 +16,26 @@ router.get('/about', (req, res) => {
 
 router.get('/login', (req, res) => {
     res.render('login.ejs');
+});
+
+router.get(
+    '/auth/google',
+    passport.authenticate('google', {
+        scope: ['profile', 'email'],
+        prompt: 'select_account',
+    })
+);
+router.get(
+    '/oauth2callback',
+    passport.authenticate('google', {
+        successRedirect: '/home',
+        failureRedirect: '/home',
+    })
+);
+router.get('/logout', function (req, res) {
+    req.logout(function () {
+        res.redirect('/home');
+    });
 });
 
 module.exports = router;

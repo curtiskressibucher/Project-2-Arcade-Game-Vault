@@ -5,37 +5,61 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Arcade Game Vault</title>
         <link rel="stylesheet" href="style/style.css" />
-
+        <script src="js/script.js"></script>
     </head>
     <body class="page-background">
         <nav>
             <div class="links">
                 <a href="/home">Home</a>
                 <a href="/about">About</a>
+                <% if(user) { %>
+                <a href="/logout">Log Out</a>
+                <% } else { %>
                 <a href="/login">Login</a>
+                <% } %>
             </div>
             <div class="burger-menu">&#9776;</div>
         </nav>
         <div class="dropdown-menu">
             <a href="/home">Home</a>
             <a href="/about">About</a>
+            <% if(user) { %>
+            <a href="/logout">Log Out</a>
+            <% } else { %>
             <a href="/login">Login</a>
+            <% } %>
         </div>
 
         <h1>About</h1>
 
         <p class="about-paragraph">
-            Step into the Arcade Game Vault, a virtual repository where the echoes of nostalgia harmonize with the beats of innovation in the gaming universe! At Arcade Game Vault, our primary goal is to meticulously curate a diverse array of classic and contemporary arcade games, establishing a digital sanctuary for gamers spanning all ages. Dive into our meticulously organized catalog, where each game is a pixelated gem awaiting discovery.
+            Step into the Arcade Game Vault, a virtual repository where the
+            echoes of nostalgia harmonize with the beats of innovation in the
+            gaming universe! At Arcade Game Vault, our primary goal is to
+            meticulously curate a diverse array of classic and contemporary
+            arcade games, establishing a digital sanctuary for gamers spanning
+            all ages.
         </p>
         <p class="about-paragraph">
-            Our virtual shelves house a rich tapestry of gaming history, seamlessly blending timeless favorites with the latest and greatest titles that redefine interactive entertainment. From the meticulously preserved classics to the avant-garde pioneers, Arcade Game Vault is more than just a collection; it's a carefully crafted space designed to immerse you in the evolution of gaming.
-        </p> <p class="about-paragraph">
-           Join us on this digital odyssey, where the past and future of arcade gaming converge in a single, dynamic platform. Welcome to the Arcade Game Vault – your online haven for gaming excellence!"
+            Our virtual shelves house a rich tapestry of gaming history,
+            seamlessly blending timeless favorites with the latest and greatest
+            titles that redefine interactive entertainment. From the
+            meticulously preserved classics to the avant-garde pioneers, Arcade
+            Game Vault is more than just a collection; it's a carefully crafted
+            space designed to immerse you in the evolution of gaming.
+        </p>
+        <p class="about-paragraph">
+            Join us on this digital odyssey, where the past and future of arcade
+            gaming converge in a single, dynamic platform. Welcome to the Arcade
+            Game Vault – your online haven for gaming excellence!"
         </p>
 
-
         <div class="login-button">
+            <% if(user) { %>
+            <a href="/logout">Log Out</a>
+            <% } else { %>
             <a href="/login">LOGIN</a>
+            <% } %>
         </div>
 
         <div class="web-feat">

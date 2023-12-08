@@ -5,11 +5,26 @@ module.exports = {
     create,
     new: newGame,
     edit,
+    update,
+    delete: deleteGame,
 };
 
 async function index(req, res, next) {
     try {
-        const games = await Game.find();
+        let games = await Game.find();
+        games = games.sort(function (a, b) {
+            const titleA = a.title.toUpperCase();
+            const titleB = b.title.toUpperCase();
+            if (titleA < titleB) {
+                return -1;
+            }
+            if (titleA > titleB) {
+                return 1;
+            }
+            return 0;
+        });
+
+        console.log('Sorted games data:', games);
         res.render('games/index.ejs', { games });
     } catch (error) {
         next(error);
@@ -44,11 +59,38 @@ async function create(req, res, next) {
 async function edit(req, res, next) {
     try {
         const gameId = req.params.id;
+        console.log(gameId);
         const game = await Game.findById(gameId);
-        if (!game) {
-            return res.status(404).send('Game not found');
+        if (game) {
+            res.render('games/edit.ejs', { game });
         }
-        res.render('games/edit.ejs', { game });
+    } catch (error) {
+        next(error);
+    }
+}
+async function update(req, res, next) {
+    try {
+        const gameId = req.params.id;
+        const { title, genre, platform, releaseYear, image } = req.body;
+
+        await Game.findByIdAndUpdate(gameId, {
+            title,
+            genre,
+            platform,
+            releaseYear,
+            image,
+        });
+
+        res.redirect('/games');
+    } catch (error) {
+        next(error);
+    }
+}
+async function deleteGame(req, res, next) {
+    try {
+        const gameId = req.params.id;
+        await Game.findByIdAndDelete(gameId);
+        res.redirect('/games');
     } catch (error) {
         next(error);
     }
