@@ -4,13 +4,17 @@
     <h1 class="">Vault</h1>
 
     <div class="search-bar">
-        <form action="/games/search" method="GET">
-            <input
-                type="text"
-                name="query"
-                placeholder="Search for game vault"
-            />
-            <button type="submit" class="submit-buttons">Search</button>
+        <form class="searchBar" action="/games/search" method="GET">
+            <div class="search-container">
+                <input
+                    type="text"
+                    name="query"
+                    placeholder="Search for game vault"
+                />
+                <button type="submit" class="search-button">
+                    <span>&#128269;</span>
+                </button>
+            </div>
         </form>
     </div>
 
