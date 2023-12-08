@@ -7,11 +7,13 @@ module.exports = {
     edit,
     update,
     delete: deleteGame,
+    search,
 };
 
 async function index(req, res, next) {
     try {
-        let games = await Game.find();
+        let games = await Game.find({ user: req.user._id });
+
         games = games.sort(function (a, b) {
             const titleA = a.title.toUpperCase();
             const titleB = b.title.toUpperCase();
@@ -24,7 +26,6 @@ async function index(req, res, next) {
             return 0;
         });
 
-        console.log('Sorted games data:', games);
         res.render('games/index.ejs', { games });
     } catch (error) {
         next(error);
@@ -48,6 +49,7 @@ async function create(req, res, next) {
             platform,
             releaseYear,
             image,
+            user: req.user._id,
         });
         await newGame.save();
         res.redirect('/games');
@@ -59,7 +61,7 @@ async function create(req, res, next) {
 async function edit(req, res, next) {
     try {
         const gameId = req.params.id;
-        console.log(gameId);
+
         const game = await Game.findById(gameId);
         if (game) {
             res.render('games/edit.ejs', { game });
@@ -89,8 +91,29 @@ async function update(req, res, next) {
 async function deleteGame(req, res, next) {
     try {
         const gameId = req.params.id;
-        await Game.findByIdAndDelete(gameId);
+        await Game.findOneAndDelete({ _id: gameId, user: req.user._id });
         res.redirect('/games');
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function search(req, res, next) {
+    try {
+        //https://expressjs.com/en/4x/api.html#req.query
+        const query = req.query.query;
+        let searchResults = [];
+
+        if (query) {
+            //https://www.mongodb.com/docs/manual/reference/operator/query/regex/
+            // Learnt how to find patterns using this syntax
+            searchResults = await Game.find({
+                user: req.user._id,
+                title: { $regex: new RegExp(query, 'i') },
+            });
+        }
+
+        res.render('games/index.ejs', { games: searchResults });
     } catch (error) {
         next(error);
     }

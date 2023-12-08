@@ -3,7 +3,8 @@ const router = express.Router();
 const gameController = require('../controllers/gameCNTLR');
 const ensureLoggedIn = require('../config/ensureLoggedin');
 
-router.get('/', ensureLoggedIn, gameController.index);
+router.get('/', gameController.index);
+router.get('/search', ensureLoggedIn, gameController.search);
 
 router.get('/new', ensureLoggedIn, gameController.new);
 router.post('/new', ensureLoggedIn, gameController.create);

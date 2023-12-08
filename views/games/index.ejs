@@ -9,7 +9,7 @@
                 <input
                     type="text"
                     name="query"
-                    placeholder="Search for game vault"
+                    placeholder="Search for game in vault"
                 />
                 <button type="submit" class="search-button">
                     <span>&#128269;</span>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="game-library">
-        <% games.forEach(function(game) { %>
+        <% if (games.length > 0) { %> <% games.forEach(function(game) { %>
         <div class="game-tile">
             <img src="<%= game.image %>" alt="<%= game.title %> Image" />
 
@@ -53,7 +53,9 @@
                 </div>
             </div>
         </div>
-        <% }); %>
+        <% }); %> <% } else { %>
+        <p>No matching games found.</p>
+        <% } %>
     </div>
 </body>
 
