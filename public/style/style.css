@@ -276,21 +276,6 @@ header {
     margin-top: 150px;
 }
 
-.login-button button {
-    font-family: 'Orbitron', 'Arial', sans-serif;
-    padding: 10px 30px;
-    background-color: #333;
-    color: #eee;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.login-button button:hover {
-    background-color: #555;
-}
-
 /* Web Feature Styles */
 .web-feat {
     height: 350px;
@@ -466,7 +451,7 @@ footer {
     }
 }
 /* ---------------------------------------------------------------------------------------------- */
-/* Style the entire game library  */
+/* Style the game library  */
 
 .game-tile:nth-child(even) {
     background-color: rgb(0, 0, 0);
@@ -478,7 +463,7 @@ footer {
 
 .game-tile {
     padding: 10px;
-    border: 1px solid #ccc;
+
     margin: 5px;
 }
 
@@ -501,4 +486,188 @@ footer {
 #new-game:hover {
     background-color: #45a049;
     color: #fff;
+}
+
+#new-game {
+    display: inline-flex;
+    padding: 12px 24px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #474747;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 20px;
+}
+
+#new-game:hover {
+    background-color: #858585;
+    color: #fff;
+}
+
+/* Center the "New game" button horizontally */
+.new-game {
+    display: flex;
+    justify-content: center;
+}
+/* ---------------------------------------------------------------------------------------------- */
+
+/* Form submition style */
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+label {
+    margin-top: 10px;
+    color: #fff;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+.submit-buttons {
+    cursor: pointer;
+    background-color: #3a3a3a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.submit-buttons:hover {
+    background-color: #7f7f7f;
+}
+
+/* Responsive Styles for Form */
+@media screen and (max-width: 400px) {
+    form {
+        width: 100%;
+    }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Game tiles */
+.game-tile {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.game-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.game-tile:hover img {
+    transform: scale(1.1);
+}
+
+.game-tile .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.game-tile:hover .details {
+    opacity: 1;
+}
+
+.game-tile h3,
+.game-tile p {
+    margin: 5px;
+}
+/* ---------------------------------------------------------------------------------------------- */
+
+.about-paragraph {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #fff;
+    margin: 20px auto;
+    max-width: 800px;
+}
+/* ---------------------------------------------------------------------------------------------- */
+
+/* Login Table Styles */
+.login-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+    height: 200px;
+    width: auto;
+    border-radius: 1px solid black;
+}
+
+/* Login Method Styles */
+.googleLogin,
+.discordLogin {
+    width: 150px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    margin: 10px; /* Adjust as needed */
+    background-color: #4285f4; /* Google Login color */
+    /* Add additional styles for each login method */
+}
+
+.googleLogin {
+    background-color: #639bf4; /* Google Login color */
+}
+
+.discordLogin {
+    background-color: #7289da; /* Discord Login color */
+}
+
+/* Common styles for login buttons */
+.googleLogin,
+.discordLogin {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.googleLogin:hover,
+.discordLogin:hover {
+    background-color: #2a4b8d; /* Darker shade for hover effect */
+}
+
+.googleLoginImg {
+    height: 30px;
 }

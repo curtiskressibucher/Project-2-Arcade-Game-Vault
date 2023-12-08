@@ -19,6 +19,10 @@ const GameSchema = new Schema(
             type: Date,
             required: true,
         },
+        image: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,
