@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+
+<h1>Reviews</h1>
+
+<div class="search-bar">
+    <form class="searchBar" action="/games/search" method="GET">
+        <div class="search-container">
+            <input
+                type="text"
+                name="query"
+                placeholder="Search for game in vault"
+            />
+            <button type="submit" class="search-button">
+                <span>&#128269;</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="game-library">
+    <% if (games.length > 0) { %> <% games.forEach(function(game) { %>
+    <div class="game-tile">
+        <img src="<%= game.image %>" alt="<%= game.title %> Image" />
+
+        <div class="details">
+            <h3><%= game.title %></h3>
+            <p><strong>Genre:</strong> <%= game.genre %></p>
+            <p><strong>Platform:</strong> <%= game.platform %></p>
+            <p>
+                <strong>Release Year:</strong> <%=
+                game.releaseYear.toISOString().split('T')[0] %>
+            </p>
+            <a href="/reviews/<%= game._id %>">review</a>
+        </div>
+    </div>
+    <% }); %> <% } else { %>
+    <p>No matching games found.</p>
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>

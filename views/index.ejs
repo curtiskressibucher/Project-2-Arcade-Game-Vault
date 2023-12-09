@@ -13,7 +13,12 @@
                 <a href="/home">Home</a>
                 <a href="/about">About</a>
                 <% if(user) { %>
-                <a href="/logout">Log Out</a>
+                <a href="/logout"
+                    >Log Out<img
+                        class="user-avatar"
+                        src="<%= user.avatar %>"
+                        alt="User avatar"
+                /></a>
                 <% } else { %>
                 <a href="/login">Login</a>
                 <% } %>
@@ -53,7 +58,7 @@
                 <% } %>
             </div>
             <div id="Reviews">
-                <a href="#" class="web-feat-button">Reviews</a>
+                <a href="/reviews" class="web-feat-button">Reviews</a>
             </div>
             <div id="Tips-Tricks">
                 <a href="#" class="web-feat-button">Tips and Tricks</a>

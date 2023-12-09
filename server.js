@@ -12,6 +12,7 @@ require('./config/passport');
 
 const indexRouter = require('./routes/index');
 const gamesRouter = require('./routes/games');
+const reviewRouter = require('./routes/reviews');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -43,6 +44,7 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/games', gamesRouter);
+app.use('/reviews', reviewRouter);
 
 app.listen(PORT, () => {
     console.log('Listening on port', PORT);

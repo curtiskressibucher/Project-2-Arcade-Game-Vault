@@ -1,0 +1,68 @@
+<%- include('../partials/header') %>
+
+<div class="game-details">
+    <h1><%= game.title %></h1>
+    <img
+        class="game-image"
+        src="<%= game.image %>"
+        alt="<%= game.title %> Cover Image"
+    />
+
+    <p>Genre: <%= game.genre %></p>
+    <p>Platform: <%= game.platform %></p>
+    <p>Release Year: <%= game.releaseYear.getFullYear() %></p>
+</div>
+
+<section class="add-review">
+    <form
+        class="review-form"
+        action="/reviews/<%= game._id %>/submit-review"
+        method="POST"
+    >
+        <label for="content">Review:</label>
+        <textarea id="content" name="content" rows="6" required></textarea>
+
+        <label for="rating">Rating:</label>
+        <input
+            type="number"
+            id="rating"
+            name="rating"
+            min="1"
+            max="5"
+            required
+        />
+        <button type="submit">Submit Review</button>
+    </form>
+</section>
+
+<section class="reviews">
+    <h2>Reviews</h2>
+    <% if (game.reviews && game.reviews.length > 0) { %>
+    <ul>
+        <% game.reviews.forEach(review => { %>
+        <li>
+            <div class="review-user">
+                <img
+                    class="review-avatar"
+                    src="<%= review.userAvatar %>"
+                    alt="<%= review.userName %> Avatar"
+                />
+                <strong><%= review.userName %>:</strong>
+            </div>
+            <span class="review-timestamp"
+                ><%= review.createdAt.toLocaleString('en-US', { weekday:
+                'short', year: 'numeric', month: 'short', day: 'numeric', hour:
+                '2-digit', minute: '2-digit' }) %>
+            </span>
+            <div class="review-content"><%= review.content %></div>
+            <div class="review-rating">Rating: <%= review.rating %></div>
+            <a href="">Delete</a>
+        </li>
+        <% }) %>
+    </ul>
+    <% } else { %>
+    <p>No reviews available for this game.</p>
+    <% } %>
+</section>
+
+<%- include('../partials/footer') %>
