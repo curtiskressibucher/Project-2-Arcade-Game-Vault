@@ -6,7 +6,10 @@ const userSchema = new Schema(
         name: String,
         googleId: {
             type: String,
-            required: true,
+            required: false,
+        },
+        discordId: {
+            type: String,
         },
         email: String,
         avatar: String,

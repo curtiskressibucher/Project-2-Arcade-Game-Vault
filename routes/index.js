@@ -32,6 +32,22 @@ router.get(
         failureRedirect: '/home',
     })
 );
+router.get(
+    '/auth/discord',
+    passport.authenticate('discord', {
+        scope: ['identify', 'email'],
+        prompt: 'select_account',
+    })
+);
+
+router.get(
+    '/api/auth/discord/redirect',
+    passport.authenticate('discord', {
+        successRedirect: '/home',
+        failureRedirect: '/home',
+    })
+);
+
 router.get('/logout', function (req, res) {
     req.logout(function () {
         res.redirect('/home');
