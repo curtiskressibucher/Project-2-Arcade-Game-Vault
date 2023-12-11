@@ -11,28 +11,66 @@
     <p>Genre: <%= game.genre %></p>
     <p>Platform: <%= game.platform %></p>
     <p>Release Year: <%= game.releaseYear.getFullYear() %></p>
+    <div class="arverage-rating">
+
+        <% if (game.reviews && game.reviews.length > 0) { %>
+        <% let totalRating= 0; %>
+        <% game.reviews.forEach(review => { %>
+        <% totalRating +=review.rating; %>
+        <% }) %>
+        <% const averageRating = totalRating / game.reviews.length; %>
+        <p><%= averageRating.toFixed(0) %> / 5</p>
+        <% } %>
+
+    </div>
 </div>
 
 <section class="add-review">
+    <% if(user) {%>
     <form
         class="review-form"
         action="/reviews/<%= game._id %>/submit-review"
         method="POST"
     >
-        <label for="content">Review:</label>
-        <textarea id="content" name="content" rows="6" required></textarea>
-
-        <label for="rating">Rating:</label>
-        <input
-            type="number"
-            id="rating"
-            name="rating"
-            min="1"
-            max="5"
+        <label for="content">Review</label>
+        <textarea
+            id="content"
+            name="content"
+            rows="6"
+            style="resize: none"
+            maxlength="300"
             required
-        />
+        ></textarea>
+
+        <div class="rating-container">
+            <label for="rating"></label>
+            <div class="rating-stars">
+                <input
+                    type="radio"
+                    id="star5"
+                    name="rating"
+                    value="5"
+                    required
+                />
+                <label for="star5">&#9733;</label>
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label for="star4">&#9733;</label>
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label for="star3">&#9733;</label>
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label for="star2">&#9733;</label>
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label for="star1">&#9733;</label>
+            </div>
+        </div>
         <button type="submit">Submit Review</button>
     </form>
+
+    <% } else {%>
+
+    <div class="login-button"><a href="/login">LOGIN</a></div>
+
+    <% } %>
 </section>
 
 <section class="reviews">
@@ -52,11 +90,31 @@
             <span class="review-timestamp"
                 ><%= review.createdAt.toLocaleString('en-US', { weekday:
                 'short', year: 'numeric', month: 'short', day: 'numeric', hour:
-                '2-digit', minute: '2-digit' }) %>
-            </span>
+                '2-digit', minute: '2-digit' }) %></span
+            >
             <div class="review-content"><%= review.content %></div>
-            <div class="review-rating">Rating: <%= review.rating %></div>
-            <a href="">Delete</a>
+            <div class="review-rating">
+                <% for (let i = 0; i < review.rating; i++) { %> &#9733; <% } %>
+            </div>
+            <!-- Learnt that when comparing objectIds === may not work so using equals if you want them to have equality
+            https://www.codemzy.com/blog/compare-mongodb-objectid -->
+            <% if (user && user._id.equals(review.user)) { %>
+             <form
+            class="edit-form-review"
+            method="post"
+            action="/reviews/<%= review._id %>/edit"
+        >
+            <button type="submit" class="edit-button">Edit</button>
+        </form>
+            <form
+                class="delete-form-review"
+                method="post"
+                action="/reviews/<%= review._id %>?_method=DELETE"
+                onsubmit="return confirm('Are you sure you want to delete this review?');"
+            >
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+            <% } %>
         </li>
         <% }) %>
     </ul>

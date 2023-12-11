@@ -19,6 +19,11 @@ const reviewSchema = new Schema(
         },
         userName: String,
         userAvatar: String,
+        game: {
+            type: Schema.Types.ObjectId,
+            ref: 'Game',
+            required: true,
+        },
     },
     {
         timestamps: true,

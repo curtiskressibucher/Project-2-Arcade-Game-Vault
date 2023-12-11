@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+
+<h1>Edit Review</h1>
+
+<form
+    class="edit-review-form"
+    action="/reviews/<%= review._id %>/update"
+    method="POST"
+>
+    <label for="content">Review</label>
+    <textarea
+        id="content"
+        name="content"
+        rows="6"
+        style="resize: none"
+        maxlength="300"
+        required
+    ><%= review.content %></textarea>
+
+    <div class="rating-container">
+        <label for="rating"></label>
+            <div class="rating-stars">
+                <input
+                    type="radio"
+                    id="star5"
+                    name="rating"
+                    value="5"
+                    required
+                />
+                <label for="star5">&#9733;</label>
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label for="star4">&#9733;</label>
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label for="star3">&#9733;</label>
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label for="star2">&#9733;</label>
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label for="star1">&#9733;</label>
+            </div>
+    </div>
+
+    <button type="submit">Update Review</button>
+</form>
+
+<%- include('../partials/footer') %>

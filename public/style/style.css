@@ -567,7 +567,7 @@ footer {
 
 /* ---------------------------------------------------------------------------------------------- */
 
-/* Form submition style */
+/* || Form submition style */
 
 form {
     display: flex;
@@ -678,6 +678,7 @@ input {
     border: 1px solid #4caf50;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .edit-button:hover {
@@ -700,9 +701,40 @@ input {
     border: 1px solid #e00404;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .delete-button:hover {
+    background-color: #6d6e6d;
+}
+
+.delete-form-review {
+    display: inline-block;
+    padding: 0 0;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.edit-form-review {
+    display: inline-block;
+    padding: 0 0;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.review-button {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: #454545;
+    color: white;
+    border: 1px solid rgb(223, 250, 18);
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.review-button:hover {
     background-color: #6d6e6d;
 }
 /* ---------------------------------------------------------------------------------------------- */
@@ -719,12 +751,17 @@ input {
 /* Login Table Styles */
 .login-table {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 200px;
-    height: 200px;
-    width: auto;
-    border-radius: 1px solid black;
+    margin: 50px auto; /* Updated margin to center the login table */
+    height: 300px;
+    padding: 20px;
+    width: 500px;
+    background-color: #000000a5;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .googleLogin,
@@ -776,6 +813,8 @@ input {
 /* || reviews style  */
 .reviews {
     margin-top: 20px;
+    max-height: 1000px;
+    overflow-y: auto;
 }
 
 /* Style for each review tile */
@@ -793,6 +832,7 @@ input {
     border-radius: 10px;
     margin-left: 10px;
     margin-right: 10px;
+    flex-shrink: 0;
 }
 
 .reviews li strong {
@@ -800,6 +840,7 @@ input {
 }
 
 .review-user {
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     align-items: center;
 }
@@ -822,7 +863,9 @@ input {
 
 /* Style for the review content */
 .review-content {
+    font-family: Arial, Helvetica, sans-serif;
     margin-top: 10px;
+    margin-left: 40px;
 }
 
 /* Style for the rating */
@@ -877,7 +920,9 @@ input {
 }
 
 .review-form label {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 15px;
     font-size: 1.2em;
 }
@@ -919,5 +964,32 @@ input {
 
 .review-form button:hover {
     background-color: #686868;
+}
+.rating-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rating-stars {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 10px;
+}
+
+.rating-stars input {
+    display: none;
+}
+
+.rating-stars label {
+    font-size: 30px;
+    cursor: pointer;
+    color: #fbfbfb;
+    margin: 10px;
+}
+
+.rating-stars label:hover,
+.rating-stars input:checked ~ label {
+    color: #fcd203;
 }
 /* ---------------------------------------------------------------------------------------------- */

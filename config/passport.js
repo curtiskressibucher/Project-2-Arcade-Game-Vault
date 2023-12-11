@@ -55,7 +55,6 @@ passport.use(
                         avatar: avatarURL,
                     });
                 } else {
-                    // Update avatar if it has changed
                     if (avatarURL && user.avatar !== avatarURL) {
                         user.avatar = avatarURL;
                         await user.save();

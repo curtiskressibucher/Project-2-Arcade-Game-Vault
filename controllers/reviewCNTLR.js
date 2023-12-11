@@ -5,34 +5,34 @@ module.exports = {
     index,
     show,
     create,
+    delete: deleteReview,
+    search,
 };
 
-async function index(req, res) {
+async function index(req, res, next) {
     try {
         const games = await Game.find();
-        const reviews = await Review.find();
+        const reviews = await Review.find().populate('user');
 
         res.render('reviews/reviewIndex.ejs', { games, reviews });
-    } catch (err) {
-        console.error('Error fetching data:', err);
-        res.status(500).send('Internal Server Error');
+    } catch (error) {
+        next(error);
     }
 }
 
-async function show(req, res) {
+async function show(req, res, next) {
     try {
         const gameId = req.params.gameId;
 
         const game = await Game.findById(gameId).populate('reviews');
 
         res.render('reviews/show.ejs', { game });
-    } catch (err) {
-        console.error('Error fetching data:', err);
-        res.status(500).send('Internal Server Error');
+    } catch (error) {
+        next(error);
     }
 }
 
-async function create(req, res) {
+async function create(req, res, next) {
     try {
         const gameId = req.params.gameId;
         const { content, rating } = req.body;
@@ -44,7 +44,9 @@ async function create(req, res) {
             user: userId,
             userName,
             userAvatar,
+            game: gameId,
         });
+        console.log(newReview);
 
         await newReview.save();
 
@@ -55,8 +57,37 @@ async function create(req, res) {
         await game.save();
 
         res.redirect(`/reviews/${gameId}`);
-    } catch (err) {
-        console.error('Error creating review:', err);
-        res.status(500).send('Internal Server Error');
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function deleteReview(req, res, next) {
+    try {
+        const reviewId = req.params.reviewId;
+        const review = await Review.findById(reviewId);
+
+        const gameId = review.game;
+
+        await Review.findByIdAndDelete(reviewId);
+
+        res.redirect(`/reviews/${gameId}`);
+    } catch (error) {
+        next(error);
+    }
+}
+async function search(req, res, next) {
+    try {
+        const query = req.query.query;
+        const games = await Game.find({
+            title: { $regex: new RegExp(query, 'i') },
+        });
+        console.log('extracted game:', games);
+
+        const reviews = await Review.find().populate('user');
+
+        res.render('reviews/reviewIndex.ejs', { games, reviews });
+    } catch (error) {
+        next(error);
     }
 }

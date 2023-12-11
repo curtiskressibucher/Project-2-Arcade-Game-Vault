@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 
 <body>
-    <h1 class="">VAULT</h1>
+    <h1>WELCOME TO YOUR VAULT</h1>
 
     <div class="search-bar">
         <form class="searchBar" action="/games/search" method="GET">
@@ -50,6 +50,11 @@
                             Delete
                         </button>
                     </form>
+                </div>
+                <div class="action-buttons">
+                    <a class="review-button" href="/reviews/<%= game.id %>"
+                        >REVIEWS</a
+                    >
                 </div>
             </div>
         </div>

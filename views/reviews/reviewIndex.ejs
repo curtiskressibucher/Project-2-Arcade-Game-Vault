@@ -3,12 +3,12 @@
 <h1>Reviews</h1>
 
 <div class="search-bar">
-    <form class="searchBar" action="/games/search" method="GET">
+    <form action="/reviews/search" method="GET">
         <div class="search-container">
             <input
                 type="text"
                 name="query"
-                placeholder="Search for game in vault"
+                placeholder="Search for a game..."
             />
             <button type="submit" class="search-button">
                 <span>&#128269;</span>
@@ -30,7 +30,11 @@
                 <strong>Release Year:</strong> <%=
                 game.releaseYear.toISOString().split('T')[0] %>
             </p>
-            <a href="/reviews/<%= game._id %>">review</a>
+            <div class="action-buttons">
+                <a class="review-button" href="/reviews/<%= game._id %>"
+                    >REVIEW</a
+                >
+            </div>
         </div>
     </div>
     <% }); %> <% } else { %>
