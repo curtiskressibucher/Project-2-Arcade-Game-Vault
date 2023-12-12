@@ -72,40 +72,41 @@
 
     <% } %>
 </section>
-
+<h2>Reviews</h2>
 <section class="reviews">
-    <h2>Reviews</h2>
+
     <% if (game.reviews && game.reviews.length > 0) { %>
     <ul>
         <% game.reviews.forEach(review => { %>
         <li>
             <div class="review-user">
-                <img
+                <div class="avatar-name"> <img
                     class="review-avatar"
                     src="<%= review.userAvatar %>"
                     alt="<%= review.userName %> Avatar"
                 />
-                <strong><%= review.userName %>:</strong>
+                <strong class="username-stars">
+                    <%= review.userName %>:
+                </strong>
+                </div>
+
+                    <% for (let i = 0; i < review.rating; i++) { %> &#9733; <% } %>
             </div>
+
             <span class="review-timestamp"
                 ><%= review.createdAt.toLocaleString('en-US', { weekday:
                 'short', year: 'numeric', month: 'short', day: 'numeric', hour:
                 '2-digit', minute: '2-digit' }) %></span
             >
             <div class="review-content"><%= review.content %></div>
-            <div class="review-rating">
-                <% for (let i = 0; i < review.rating; i++) { %> &#9733; <% } %>
-            </div>
+
             <!-- Learnt that when comparing objectIds === may not work so using equals if you want them to have equality
             https://www.codemzy.com/blog/compare-mongodb-objectid -->
             <% if (user && user._id.equals(review.user)) { %>
-             <form
-            class="edit-form-review"
-            method="post"
-            action="/reviews/<%= review._id %>/edit"
-        >
-            <button type="submit" class="edit-button">Edit</button>
-        </form>
+
+            <div class="edit-form-review">
+                <a href="/reviews/<%= game._id %>/<%= review._id %>/update" class="edit-button">Edit</a>
+            </div>
             <form
                 class="delete-form-review"
                 method="post"

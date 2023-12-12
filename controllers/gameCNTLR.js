@@ -12,7 +12,7 @@ module.exports = {
 
 async function index(req, res, next) {
     try {
-        let games = await Game.find({ user: req.user._id });
+        let games = await Game.find();
 
         games = games.sort(function (a, b) {
             const titleA = a.title.toUpperCase();

@@ -7,11 +7,14 @@ module.exports = {
     create,
     delete: deleteReview,
     search,
+    edit,
+    updateReview,
 };
 
 async function index(req, res, next) {
     try {
         const games = await Game.find();
+
         const reviews = await Review.find().populate('user');
 
         res.render('reviews/reviewIndex.ejs', { games, reviews });
@@ -36,6 +39,7 @@ async function create(req, res, next) {
     try {
         const gameId = req.params.gameId;
         const { content, rating } = req.body;
+
         const { _id: userId, name: userName, avatar: userAvatar } = req.user;
 
         const newReview = new Review({
@@ -46,15 +50,48 @@ async function create(req, res, next) {
             userAvatar,
             game: gameId,
         });
-        console.log(newReview);
 
         await newReview.save();
 
         const game = await Game.findById(gameId);
 
-        game.reviews.unshift(newReview);
-
+        game.reviews.push(newReview);
         await game.save();
+
+        res.redirect(`/reviews/${gameId}`);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function edit(req, res, next) {
+    try {
+        const gameId = req.params.gameId;
+        const reviewId = req.params.reviewId;
+
+        const game = await Game.findById(gameId);
+        const review = await Review.findById(reviewId);
+
+        res.render('reviews/edit.ejs', { review, game });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function updateReview(req, res, next) {
+    try {
+        const gameId = req.params.gameId;
+        const reviewId = req.params.reviewId;
+
+        const { content, rating } = req.body;
+
+        const game = await Game.findById(gameId);
+        const review = await Review.findById(reviewId);
+
+        review.content = content;
+        review.rating = rating;
+
+        await review.save();
 
         res.redirect(`/reviews/${gameId}`);
     } catch (error) {
@@ -78,6 +115,7 @@ async function deleteReview(req, res, next) {
 }
 async function search(req, res, next) {
     try {
+        console.log('test for req and body data', req.body);
         const query = req.query.query;
         const games = await Game.find({
             title: { $regex: new RegExp(query, 'i') },

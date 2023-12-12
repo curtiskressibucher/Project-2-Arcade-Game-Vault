@@ -10,6 +10,9 @@ router.get('/:gameId', reviewController.show);
 
 router.post('/:gameId/submit-review', reviewController.create);
 
+router.get('/:gameId/:reviewId/update', reviewController.edit);
+router.post('/:gameId/:reviewId/update', reviewController.updateReview);
+
 router.delete('/:reviewId', reviewController.delete);
 
 module.exports = router;

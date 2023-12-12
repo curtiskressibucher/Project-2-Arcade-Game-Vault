@@ -18,26 +18,37 @@
 </div>
 
 <div class="game-library">
-    <% if (games.length > 0) { %> <% games.forEach(function(game) { %>
+    <%
+    const duplicateTitles = {};
+    if (games.length > 0) {
+        games.forEach(function(game) {
+            const spaceInTitle = game.title.trim();
+
+            if (!duplicateTitles[spaceInTitle]) {
+                duplicateTitles[spaceInTitle] = true;
+    %>
     <div class="game-tile">
-        <img src="<%= game.image %>" alt="<%= game.title %> Image" />
+        <img src="<%= game.image %>" alt="<%= spaceInTitle %> Image" />
 
         <div class="details">
-            <h3><%= game.title %></h3>
+            <h3><%= spaceInTitle %></h3>
             <p><strong>Genre:</strong> <%= game.genre %></p>
             <p><strong>Platform:</strong> <%= game.platform %></p>
             <p>
                 <strong>Release Year:</strong> <%=
                 game.releaseYear.toISOString().split('T')[0] %>
             </p>
+
             <div class="action-buttons">
-                <a class="review-button" href="/reviews/<%= game._id %>"
-                    >REVIEW</a
-                >
+                <a class="review-button" href="/reviews/<%= game._id %>">REVIEW</a>
             </div>
         </div>
     </div>
-    <% }); %> <% } else { %>
+    <%
+            }
+        });
+    %>
+    <% } else { %>
     <p>No matching games found.</p>
     <% } %>
 </div>

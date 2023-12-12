@@ -132,12 +132,17 @@ h1 {
 /* Reset and Global Styles */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
+html,
 body,
 h1,
 p,
 ul {
     margin: 0;
     padding: 0;
+}
+html {
+    box-sizing: border-box;
+    width: 100%;
 }
 .page-background {
     background: url(../images/Generate_a_darkthemed_sophisticated_background.jpg);
@@ -149,6 +154,9 @@ ul {
 body {
     background-color: #000;
     font-family: 'Orbitron', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
 
 /* Navigation Styles */
@@ -175,15 +183,17 @@ nav::before {
 }
 
 .Logo {
-    width: 500px;
-    height: 400px;
+    width: 80%;
+    max-width: 500px;
+    height: auto;
     margin: 0 auto;
     text-align: center;
 }
 
 .Logo img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    max-height: 400px;
 }
 
 .user-avatar {
@@ -248,24 +258,6 @@ nav::before {
 .dropdown-menu a:hover {
     background-color: #fff;
     color: #000;
-}
-
-/* Media Queries  */
-@media screen and (max-width: 650px) {
-    .links {
-        display: none;
-    }
-
-    .burger-menu {
-        display: block;
-        justify-content: end;
-    }
-
-    .burger-menu.active + .dropdown-menu,
-    .dropdown-menu.active {
-        display: flex;
-        justify-content: end;
-    }
 }
 
 /* Header Styles */
@@ -405,74 +397,6 @@ footer {
     width: auto;
 }
 
-/* Responsive Styles  */
-@media screen and (max-width: 365px) {
-    body {
-        background-size: contain;
-    }
-
-    nav {
-        padding: 5px 10px;
-    }
-
-    .Logo img {
-        max-width: 150px;
-    }
-
-    .links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background-color: #333;
-        width: 100%;
-    }
-
-    .links a {
-        margin: 0;
-    }
-
-    .burger-menu {
-        display: block;
-    }
-
-    .burger-menu.active + .links {
-        display: flex;
-    }
-
-    .dropdown-menu {
-        top: 60px;
-        right: 0;
-        width: 100%;
-    }
-
-    .web-feat {
-        flex-direction: column;
-        margin-top: 20px;
-    }
-
-    #game-vault,
-    #Reviews,
-    #Tips-Tricks {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .web-feat-button {
-        margin-top: 10px;
-    }
-}
-
-@media screen and (max-width: 650px) {
-    #game-vault,
-    #Reviews,
-    #Tips-Tricks {
-        width: 100%;
-        max-width: 100%;
-        margin: 10px 0;
-    }
-}
 /* ---------------------------------------------------------------------------------------------- */
 /* Style the game library  */
 
@@ -608,13 +532,6 @@ input {
     background-color: #7f7f7f;
 }
 
-/* Responsive Styles for Form */
-@media screen and (max-width: 400px) {
-    form {
-        width: 100%;
-    }
-}
-
 /* ---------------------------------------------------------------------------------------------- */
 /* Game tiles */
 .game-tile {
@@ -724,7 +641,9 @@ input {
 
 .review-button {
     margin-top: 10px;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 8px 12px;
     font-size: 14px;
     text-decoration: none;
@@ -754,10 +673,10 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px auto; /* Updated margin to center the login table */
-    height: 300px;
-    padding: 20px;
-    width: 500px;
+    margin: 5% auto;
+    height: auto;
+    padding: 5vw;
+    max-width: 500px;
     background-color: #000000a5;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -811,10 +730,18 @@ input {
 /* ---------------------------------------------------------------------------------------------- */
 
 /* || reviews style  */
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .reviews {
     margin-top: 20px;
     max-height: 1000px;
     overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Style for each review tile */
@@ -826,15 +753,16 @@ input {
 .reviews li {
     box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.59);
     border: 1px solid #ddd;
+    min-width: 300px;
+    max-width: 800px;
+    width: 100%;
+    height: auto;
     margin-bottom: 20px;
     padding: 15px;
     position: relative;
     border-radius: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
     flex-shrink: 0;
 }
-
 .reviews li strong {
     font-weight: bold;
 }
@@ -842,6 +770,7 @@ input {
 .review-user {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -864,16 +793,17 @@ input {
 /* Style for the review content */
 .review-content {
     font-family: Arial, Helvetica, sans-serif;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 40px;
 }
 
 /* Style for the rating */
-.review-rating {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
+.avatar-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: bold;
+    padding: 10px;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -993,3 +923,111 @@ input {
     color: #fcd203;
 }
 /* ---------------------------------------------------------------------------------------------- */
+/* Responsive Styles  */
+@media screen and (max-width: 500px) {
+    html,
+    body {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 320px) {
+    body {
+        background-size: cover;
+    }
+    body.page-background {
+        background-color: #000000;
+    }
+    nav {
+        padding: 5px 10px;
+    }
+
+    .Logo img {
+        max-width: 120px;
+    }
+
+    .links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #333;
+        width: 100%;
+    }
+
+    .links a {
+        margin: 0;
+    }
+
+    .burger-menu {
+        display: block;
+    }
+
+    .burger-menu.active + .links {
+        display: flex;
+    }
+
+    .dropdown-menu {
+        top: 60px;
+        right: 0;
+        width: 100%;
+    }
+
+    .web-feat {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    #game-vault,
+    #Reviews,
+    #Tips-Tricks {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .web-feat-button {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 650px) {
+    body.page-background {
+        background-color: #000000;
+    }
+    .links {
+        display: none;
+    }
+
+    .burger-menu {
+        display: block;
+        justify-content: end;
+    }
+
+    .burger-menu.active + .dropdown-menu,
+    .dropdown-menu.active {
+        display: flex;
+        justify-content: end;
+    }
+
+    #game-vault,
+    #Reviews,
+    #Tips-Tricks {
+        width: 100%;
+        max-width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 400px) {
+    form {
+        width: 100%;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    header {
+        height: 120px;
+    }
+}

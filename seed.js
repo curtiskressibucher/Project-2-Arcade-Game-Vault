@@ -179,6 +179,6 @@ async function seed() {
     }
 }
 
-seed();
+// seed();
 
 // deleteAllGames();
