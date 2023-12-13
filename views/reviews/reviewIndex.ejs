@@ -11,7 +11,7 @@
                 placeholder="Search for a game..."
             />
             <button type="submit" class="search-button">
-                <span>&#128269;</span>
+                <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </div>
     </form>
@@ -39,8 +39,14 @@
                 game.releaseYear.toISOString().split('T')[0] %>
             </p>
 
-            <div class="action-buttons">
+            <div class="review-action-buttons">
                 <a class="review-button" href="/reviews/<%= game._id %>">REVIEW</a>
+                <% if (user) { %>
+            <form class="add-button-form" action="/games/add-to-vault" method="POST">
+                <input type="hidden" name="reviewGameId" value="<%= game._id %>">
+                <button type="submit" class="add-to-vault">ADD</button>
+            </form>
+            <% } %>
             </div>
         </div>
     </div>

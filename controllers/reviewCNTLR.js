@@ -17,7 +17,11 @@ async function index(req, res, next) {
 
         const reviews = await Review.find().populate('user');
 
-        res.render('reviews/reviewIndex.ejs', { games, reviews });
+        res.render('reviews/reviewIndex.ejs', {
+            games,
+            reviews,
+            title: 'Reviews',
+        });
     } catch (error) {
         next(error);
     }
@@ -29,7 +33,7 @@ async function show(req, res, next) {
 
         const game = await Game.findById(gameId).populate('reviews');
 
-        res.render('reviews/show.ejs', { game });
+        res.render('reviews/show.ejs', { game, title: game.title });
     } catch (error) {
         next(error);
     }
@@ -72,7 +76,7 @@ async function edit(req, res, next) {
         const game = await Game.findById(gameId);
         const review = await Review.findById(reviewId);
 
-        res.render('reviews/edit.ejs', { review, game });
+        res.render('reviews/edit.ejs', { review, game, title: 'Edit Review' });
     } catch (error) {
         next(error);
     }
@@ -115,16 +119,20 @@ async function deleteReview(req, res, next) {
 }
 async function search(req, res, next) {
     try {
-        console.log('test for req and body data', req.body);
         const query = req.query.query;
         const games = await Game.find({
             title: { $regex: new RegExp(query, 'i') },
         });
+
         console.log('extracted game:', games);
 
         const reviews = await Review.find().populate('user');
 
-        res.render('reviews/reviewIndex.ejs', { games, reviews });
+        res.render('reviews/reviewIndex.ejs', {
+            games,
+            reviews,
+            title: 'Search Results',
+        });
     } catch (error) {
         next(error);
     }

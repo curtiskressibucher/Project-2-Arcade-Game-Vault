@@ -12,6 +12,9 @@
             <div class="links">
                 <a href="/home">Home</a>
                 <a href="/about">About</a>
+                 <% if(user) {%>
+                <a href="/games">Vault</a>
+                <% } %>
                 <% if(user) { %>
                 <a href="/logout"
                     >Log Out<img
@@ -26,13 +29,21 @@
             <div class="burger-menu">&#9776;</div>
         </nav>
         <div class="dropdown-menu">
-            <a href="/home">Home</a>
-            <a href="/about">About</a>
-            <% if(user) { %>
-            <a href="/logout">Log Out</a>
-            <% } else { %>
-            <a href="/login">Login</a>
-            <% } %>
+               <a href="/home">Home</a>
+                <a href="/about">About</a>
+                 <% if(user) {%>
+                <a href="/games">Vault</a>
+                <% } %>
+                <% if(user) { %>
+                <a href="/logout"
+                    >Log Out<img
+                        class="user-avatar"
+                        src="<%= user.avatar %>"
+                        alt="User avatar"
+                /></a>
+                <% } else { %>
+                <a href="/login">Login</a>
+                <% } %>
         </div>
         <header>
             <div class="Logo">
@@ -50,19 +61,19 @@
         <% } %>
 
         <div class="web-feat">
-            <div id="game-vault">
-                <% if(user) { %>
-                <a href="/games" class="web-feat-button">Game Vault</a>
-                <% } else { %>
-                <a href="/login" class="web-feat-button">Game Vault</a>
-                <% } %>
-            </div>
-            <div id="Reviews">
-                <a href="/reviews" class="web-feat-button">Reviews</a>
-            </div>
-            <div id="Tips-Tricks">
-                <a href="#" class="web-feat-button">Tips and Tricks</a>
-            </div>
+
+            <a href="<% if(user) { %>/games<% } else { %>/login<% } %>" id="game-vault">
+            <h2 class="web-feat-button">GAME VAULT</h2>
+            </a>
+
+            <a href="/reviews" id="Reviews">
+            <h2 class="web-feat-button">REVIEWS</h2>
+            </a>
+
+            <a href="#" id="Tips-Tricks">
+            <h2 class="web-feat-button">TIPS AND TRICKS</h2>
+            </a>
+
         </div>
 
         <footer>&copy; 2023 Arcade Game Vault. All rights reserved.</footer>

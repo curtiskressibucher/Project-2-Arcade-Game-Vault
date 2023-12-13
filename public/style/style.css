@@ -140,6 +140,9 @@ ul {
     margin: 0;
     padding: 0;
 }
+main {
+    flex: 1;
+}
 html {
     box-sizing: border-box;
     width: 100%;
@@ -159,7 +162,17 @@ body {
     min-height: 100vh;
 }
 
-/* Navigation Styles */
+/* ---------------------------------------------------------------------------------------------- */
+/* || Navigation Styles */
+.partial-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 5px 20px;
+    height: 60px;
+    position: relative;
+}
 nav {
     display: flex;
     justify-content: end;
@@ -177,16 +190,15 @@ nav::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(#474747, transparent);
+    background: linear-gradient(#555555, transparent);
     z-index: -1;
-    transition: 0.2s ease;
 }
 
 .Logo {
     width: 80%;
     max-width: 500px;
     height: auto;
-    margin: 0 auto;
+    margin-top: 100px;
     text-align: center;
 }
 
@@ -196,13 +208,18 @@ nav::before {
     object-fit: contain;
 }
 
+.nav-logo img {
+    display: flex;
+    width: 150px;
+    height: 150px;
+}
+
 .user-avatar {
-    margin-left: 10px;
-    width: 30px;
-    height: 30px;
+    margin: 5px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     border: 1px solid #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .links {
@@ -228,15 +245,21 @@ nav::before {
 
 .burger-menu {
     display: none;
-    font-size: 24px;
+    font-size: 35px;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.5s, color 0.3s;
+}
+
+.burger-menu:hover {
+    background-color: #fff;
+    color: #000;
 }
 
 .dropdown-menu {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
     background-color: #333;
     width: 100px;
     right: 2px;
@@ -260,7 +283,9 @@ nav::before {
     color: #000;
 }
 
-/* Header Styles */
+/* ---------------------------------------------------------------------------------------------- */
+/* || Header Styles */
+
 header {
     display: flex;
     justify-content: center;
@@ -274,10 +299,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    margin-top: 150px;
+    margin-top: 175px;
 }
 .login-button a {
+    border: 2px solid white;
     text-decoration: none;
     font-size: 18px;
     padding: 15px 30px;
@@ -291,11 +316,15 @@ header {
     background-color: #787879;
 }
 
+/* ---------------------------------------------------------------------------------------------- */
 /* Web Feature Styles */
+
 .web-feat {
     height: 350px;
-    margin-top: 500px;
+    margin-top: 430px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #game-vault,
@@ -303,24 +332,23 @@ header {
 #Tips-Tricks {
     position: relative;
     overflow: hidden;
-    height: 300px;
-    width: 300px;
-    max-width: 360px;
+    height: 80%;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     margin: 20px auto;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
     background-position: center;
+    text-decoration: none;
 }
 
 #game-vault:hover,
 #Reviews:hover,
 #Tips-Tricks:hover {
-    transform: scale(1.03);
+    transform: scale(1.04);
 }
 
 #game-vault::before,
@@ -344,7 +372,7 @@ header {
 }
 
 #game-vault {
-    background-image: url(../images/Gamer-Vault.jpeg);
+    background-image: url(../images/Game-Vault-Logo.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -366,51 +394,36 @@ header {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #4a4a4a;
-    border: 3px solid rgb(255, 255, 255);
     color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
-    margin-top: 250px;
-    height: 30px;
+    margin-top: 240px;
     width: auto;
     transition: background-color 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
 }
 
 .web-feat-button:hover {
-    background-color: #555;
+    background-color: #676666;
 }
 
-/* Footer Styles */
+/* ---------------------------------------------------------------------------------------------- */
+/* || Footer Styles */
 footer {
     font-family: 'Arial', sans-serif;
     background-color: #333;
     color: #fff;
     padding: 10px;
     text-align: center;
-    bottom: 0;
     width: auto;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
-/* Style the game library  */
-
-.game-tile:nth-child(even) {
-    background-color: rgb(0, 0, 0);
-}
-
-.game-tile:nth-child(odd) {
-    background-color: #000000;
-}
+/* || Style the game library  */
 
 .game-tile {
     padding: 10px;
-
     margin: 5px;
 }
 
@@ -419,46 +432,34 @@ footer {
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
 #new-game {
     display: inline-flex;
-    padding: 8px 16px;
-    font-size: 14px;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
     text-decoration: none;
     cursor: pointer;
     border-radius: 5px;
-    background-color: #4caf50;
-    color: #fff;
-}
-#new-game:hover {
-    background-color: #45a049;
-    color: #fff;
-}
-
-#new-game {
-    display: inline-flex;
-    padding: 12px 24px;
-    font-size: 18px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 8px;
     background-color: #474747;
+    border: 2px solid lightgreen;
     color: #fff;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 20px;
     margin-top: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 #new-game:hover {
     background-color: #858585;
-    color: #fff;
 }
-
 /* Center the "New game" button horizontally */
 .new-game {
     display: flex;
     justify-content: center;
 }
+
+/* ---------------------------------------------------------------------------------------------- */
+/* || Search Bar */
+
 .search-bar {
     text-align: center;
     margin-bottom: 20px;
@@ -482,7 +483,7 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     padding: 10px 15px;
-    font-size: 10px;
+    font-size: 16px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .search-button:hover {
@@ -502,6 +503,11 @@ form {
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.add-button-form {
+    background-color: transparent;
+    box-shadow: none;
 }
 
 label {
@@ -585,7 +591,9 @@ input {
 /* ---------------------------------------------------------------------------------------------- */
 
 /* || Action buttons */
-.edit-button {
+
+.edit-button,
+.add-to-vault {
     display: inline-block;
     padding: 8px 12px;
     font-size: 14px;
@@ -598,8 +606,18 @@ input {
     cursor: pointer;
 }
 
-.edit-button:hover {
+.edit-button,
+.add-to-vault:hover {
     background-color: #6d6e6d;
+}
+.add-to-vault {
+    margin-top: 10px;
+}
+
+.review-action-buttons {
+    display: flex;
+    align-items: center;
+    margin: 0;
 }
 
 .delete-form {
@@ -922,6 +940,11 @@ h2 {
 .rating-stars input:checked ~ label {
     color: #fcd203;
 }
+
+
+
+
+
 /* ---------------------------------------------------------------------------------------------- */
 /* Responsive Styles  */
 @media screen and (max-width: 500px) {
@@ -956,7 +979,7 @@ h2 {
     }
 
     .links a {
-        margin: 0;
+        margin: 0, 0;
     }
 
     .burger-menu {

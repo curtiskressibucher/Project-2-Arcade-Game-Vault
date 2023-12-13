@@ -12,7 +12,7 @@
                     placeholder="Search for game in vault"
                 />
                 <button type="submit" class="search-button">
-                    <span>&#128269;</span>
+                   <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
         </form>
@@ -33,7 +33,7 @@
                 <p><strong>Genre:</strong> <%= game.genre %></p>
                 <p><strong>Platform:</strong> <%= game.platform %></p>
                 <p>
-                    <strong>Release Year:</strong> <%=
+                    <strong>Release Date:</strong> <%=
                     game.releaseYear.toISOString().split('T')[0] %>
                 </p>
 

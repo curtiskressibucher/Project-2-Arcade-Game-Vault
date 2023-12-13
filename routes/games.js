@@ -12,6 +12,8 @@ router.post('/new', ensureLoggedIn, gameController.create);
 router.get('/:id/edit', ensureLoggedIn, gameController.edit);
 router.post('/:id/edit', ensureLoggedIn, gameController.update);
 
+router.post('/add-to-vault', ensureLoggedIn, gameController.add);
+
 router.delete('/:id', gameController.delete);
 
 module.exports = router;
