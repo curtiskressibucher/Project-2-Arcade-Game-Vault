@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+
+<h1>Tips And Tricks</h1>
+
+<div class="search-bar">
+    <form action="/reviews/search" method="GET">
+        <div class="search-container">
+            <input
+                type="text"
+                name="query"
+                placeholder="Search for a game..."
+            />
+            <button type="submit" class="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="game-library">
+    <%
+    const duplicateTitles = {};
+    if (games.length > 0) {
+        games.forEach(function(game) {
+            const spaceInTitle = game.title.trim();
+
+            if (!duplicateTitles[spaceInTitle]) {
+                duplicateTitles[spaceInTitle] = true;
+    %>
+    <a href="/tips-and-tricks/<%= game._id %>">
+    <div class="game-tile">
+        <img src="<%= game.image %>" alt="<%= spaceInTitle %> Image" />
+
+        <div class="details">
+            <h3><%= spaceInTitle %></h3>
+            <p><strong>Genre:</strong> <%= game.genre %></p>
+            <p><strong>Platform:</strong> <%= game.platform %></p>
+            <p><strong>Release Year:</strong> <%= game.releaseYear.toISOString().split('T')[0] %></p>
+        </div>
+    </div>
+    </a>
+    <% } %>
+    <% }); %>
+    <% } else { %>
+    <p>No matching games found.</p>
+    <% }; %>
+
+</div>
+
+<%- include('../partials/footer') %>

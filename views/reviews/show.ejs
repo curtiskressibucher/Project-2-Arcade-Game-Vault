@@ -13,19 +13,14 @@
         <p>Platform: <%= game.platform %></p>
         <p>Release Year: <%= game.releaseYear.getFullYear() %></p>
         <div class="arverage-rating">
-
-            <% if (game.reviews && game.reviews.length > 0) { %>
-            <% let totalRating= 0; %>
-            <% game.reviews.forEach(review => { %>
-            <% totalRating +=review.rating; %>
-            <% }) %>
-            <% const averageRating = totalRating / game.reviews.length; %>
+            <% if (game.reviews && game.reviews.length > 0) { %> <% let
+            totalRating= 0; %> <% game.reviews.forEach(review => { %> <%
+            totalRating +=review.rating; %> <% }) %> <% const averageRating =
+            totalRating / game.reviews.length; %>
             <p><%= averageRating.toFixed(0) %> / 5</p>
             <% } %>
-
         </div>
     </div>
-
 </div>
 
 <section class="add-review">
@@ -77,37 +72,53 @@
 </section>
 <h2>Reviews</h2>
 <section class="reviews">
-
     <% if (game.reviews && game.reviews.length > 0) { %>
     <ul>
         <% game.reviews.forEach(review => { %>
         <li>
             <div class="review-user">
-                <div class="avatar-name"> <img
-                    class="review-avatar"
-                    src="<%= review.userAvatar %>"
-                    alt="<%= review.userName %> Avatar"
-                />
-                <strong class="username-stars">
-                    <%= review.userName %>:
-                </strong>
+                <div class="avatar-name">
+                    <img
+                        class="review-avatar"
+                        src="<%= review.userAvatar %>"
+                        alt="<%= review.userName %> Avatar"
+                    />
+                    <strong class="username-stars">
+                        <%= review.userName %>:
+                    </strong>
                 </div>
-                    <% for (let i = 0; i < review.rating; i++) { %> &#9733; <% } %>
+                <% for (let i = 0; i < review.rating; i++) { %> &#9733; <% } %>
             </div>
 
-            <span class="review-timestamp"><%= review.createdAt.toLocaleString('en-US', { weekday:
+            <span class="review-timestamp"
+                ><%= review.createdAt.toLocaleString('en-US', { weekday:
                 'short', year: 'numeric', month: 'short', day: 'numeric', hour:
                 '2-digit', minute: '2-digit' }) %>
             </span>
 
             <div class="review-content"><%= review.content %></div>
 
+            <div class="review-like">
+                <form
+                    class="like-form-tip"
+                    method="post"
+                    action="/reviews/<%= game._id  %>/<%= review._id %>/like"
+                >
+                    <button type="submit" class="like-button">
+                        👍 <%= review.likes %>
+                    </button>
+                </form>
+            </div>
             <!-- Learnt that when comparing objectIds === may not work so using equals if you want them to have equality
             https://www.codemzy.com/blog/compare-mongodb-objectid -->
             <% if (user && user._id.equals(review.user)) { %>
 
             <div class="edit-form-review">
-                <a href="/reviews/<%= game._id %>/<%= review._id %>/update" class="edit-button">Edit</a>
+                <a
+                    href="/reviews/<%= game._id %>/<%= review._id %>/update"
+                    class="edit-button"
+                    >Edit</a
+                >
             </div>
             <form
                 class="delete-form-review"
@@ -118,7 +129,6 @@
                 <button type="submit" class="delete-button">Delete</button>
             </form>
             <% } %>
-
         </li>
         <% }) %>
     </ul>

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const reviewController = require('../controllers/reviewCNTLR');
+const ensureLoggedIn = require('../config/ensureLoggedin');
 
 router.get('/', reviewController.index);
 
@@ -8,11 +9,17 @@ router.get('/search', reviewController.search);
 
 router.get('/:gameId', reviewController.show);
 
-router.post('/:gameId/submit-review', reviewController.create);
+router.post('/:gameId/:reviewId/like', reviewController.like);
 
-router.get('/:gameId/:reviewId/update', reviewController.edit);
-router.post('/:gameId/:reviewId/update', reviewController.updateReview);
+router.post('/:gameId/submit-review', ensureLoggedIn, reviewController.create);
 
-router.delete('/:reviewId', reviewController.delete);
+router.get('/:gameId/:reviewId/update', ensureLoggedIn, reviewController.edit);
+router.post(
+    '/:gameId/:reviewId/update',
+    ensureLoggedIn,
+    reviewController.updateReview
+);
+
+router.delete('/:reviewId', ensureLoggedIn, reviewController.delete);
 
 module.exports = router;

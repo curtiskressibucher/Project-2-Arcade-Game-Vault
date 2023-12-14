@@ -14,9 +14,10 @@ require('./config/passport');
 const indexRouter = require('./routes/index');
 const gamesRouter = require('./routes/games');
 const reviewRouter = require('./routes/reviews');
+const tipsRouter = require('./routes/tips');
 
 const app = express();
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT || 3000;
 
 const store = new MongoDBStore({
     uri: process.env.DATABASE_URL,
@@ -52,6 +53,7 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/games', gamesRouter);
 app.use('/reviews', reviewRouter);
+app.use('/tips-and-tricks', tipsRouter);
 
 app.listen(PORT, () => {
     console.log('Listening on port', PORT);

@@ -677,6 +677,7 @@ select {
     padding: 0 0;
     margin: 0;
     margin-top: 20px;
+    margin-right: 10px;
 }
 
 .review-button {
@@ -696,6 +697,13 @@ select {
 .review-button:hover {
     background-color: #6d6e6d;
 }
+
+.review-like {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+
 /* ---------------------------------------------------------------------------------------------- */
 
 .about-paragraph {
@@ -778,6 +786,7 @@ h2 {
 }
 .reviews {
     margin-top: 30px;
+    overflow: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -800,7 +809,6 @@ h2 {
     padding: 15px;
     position: relative;
     border-radius: 10px;
-    flex-shrink: 0;
 }
 .reviews li strong {
     font-weight: bold;
@@ -818,6 +826,7 @@ h2 {
     height: 30px;
     border-radius: 50%;
     margin-right: 10px;
+    margin-left: 10px;
     border: 1px solid white;
 }
 
@@ -963,6 +972,274 @@ h2 {
     color: #fcd203;
 }
 
+/* ---------------------------------------------------------------------------------------------- */
+/* Tips and Tricks Styles  */
+
+.tips-and-tricks-form {
+    text-align: left;
+}
+.tips-and-tricks-form label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.tips-and-tricks-form textarea {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 6px;
+    background-color: #333;
+    color: #fff;
+}
+
+.tips-and-tricks-form input {
+    width: 400px;
+    padding: 12px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 6px;
+    background-color: #333;
+    color: #fff;
+}
+
+.tips-and-tricks-form button {
+    background-color: #353535;
+    color: white;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
+}
+
+.tips-and-tricks-form button:hover {
+    background-color: #686868;
+}
+
+.tips-list {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style for each tip table */
+
+.tips-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tips-list li {
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.59);
+    border: 1px solid #ddd;
+    min-width: 300px;
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 15px;
+    position: relative;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.tips-list li .tip-title a {
+    color: #f1f1f1;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.tips-list li .tip-description {
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style for the "No tips and tricks" message */
+.tips-list h2 {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.tip-buttons {
+    display: flex;
+    margin-top: 30px;
+}
+
+/* Style for the Like button */
+.like-button {
+    padding: 5px 10px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #2a4b8d;
+    width: 70px;
+    height: 50px;
+    transition: background-color 0.3s;
+}
+
+.like-button:hover {
+    background-color: #3760b4;
+}
+
+.like-form-tip {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+.edit-delete-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+/* ---------------------------------------------------------------------------------------------- */
+/* Responsive Styles  */
+.tips-and-tricks-form {
+    text-align: left;
+    margin: 20px;
+}
+
+.tips-and-tricks-form h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.tip-container {
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 50px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.tip-container .inline-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tip-container h3 {
+    font-size: 24px;
+    color: #fff;
+}
+
+.tip-container .username-stars {
+    display: flex;
+    align-items: center;
+}
+
+.tip-container .username-stars img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 10px;
+    border: 1px solid white;
+}
+
+.tip-container p {
+    font-size: 18px;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.comment-form label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 6px;
+    background-color: #333;
+    color: #fff;
+}
+
+.comment-form button {
+    background-color: #353535;
+    color: white;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
+}
+
+.comment-form button:hover {
+    background-color: #686868;
+}
+
+.comments-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.comment {
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.59);
+    border: 1px solid #ddd;
+    min-width: 300px;
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 15px;
+    position: relative;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.comment-text {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.comment-user {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #ddd;
+    display: flex;
+    align-items: center;
+}
+
+.comment-time {
+    font-size: 14px;
+    color: #888;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.no-comments {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #fff;
+}
 /* ---------------------------------------------------------------------------------------------- */
 /* Responsive Styles  */
 

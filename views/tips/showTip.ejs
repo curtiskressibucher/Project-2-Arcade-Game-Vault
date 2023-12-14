@@ -1,0 +1,53 @@
+<%- include('../partials/header') %>
+
+<h2>Tips And Tricks</h2>
+
+
+
+
+    <div class="tip-container">
+        <div class="inline-top">
+            <h3 class="tip-title"><%= tip.title %></h3>
+            <strong class="username-stars">
+                <%= tip.user.name %>
+                <img class="review-avatar" src="<%= tip.user.avatar %>" alt="Avatar">
+            </strong>
+        </div>
+        <p class="tip-content"><%= tip.content %></p>
+    </div>
+
+    <div>
+        <h2>Comments:</h2>
+    <% if(user) { %>
+        <form class="comment-form" action="/tips-and-tricks/<%= tip.game %>/<%= tip._id %>/comment" method="post">
+            <label for="commentText">Add a comment:</label>
+            <textarea class="comment-textarea" name="commentText" id="commentText" rows="6"
+            style="resize: none"
+            maxlength="300"
+            requiredrequired></textarea>
+            <button class="submit-buttons" type="submit">Submit Comment</button>
+        </form>
+    <% }else { %>
+        <div class="login-button"><a href="/login">LOGIN</a></div>
+        <% } %>
+
+        <% if (tip.comments && tip.comments.length > 0) { %>
+            <ul class="comments-list">
+                <% tip.comments.forEach(comment => { %>
+                    <li class="comment">
+                        <p class="comment-text"><%= comment.text %></p>
+                        <p class="comment-user">By: <%= tip.user.name %> <img class="review-avatar" src="<%= tip.user.avatar %>" alt=""></p>
+                       <p class="comment-time">Posted at: <%= comment.createdAt.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }) %></p>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <h2>No comments yet.</h2>
+        <% } %>
+    </div>
+</div>
+
+
+
+
+<%- include('../partials/footer') %>a

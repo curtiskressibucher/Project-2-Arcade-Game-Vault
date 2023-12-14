@@ -56,10 +56,16 @@ const GameSchema = new Schema(
                 ref: 'Review',
             },
         ],
+        tips: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Tip',
+            },
+        ],
     },
     {
         timestamps: true,
     }
 );
 
-module.exports = mongoose.model('Games', GameSchema);
+module.exports = mongoose.model('Game', GameSchema);

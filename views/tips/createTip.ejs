@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<% console.log(game); %>
+<form class="tips-and-tricks-form" action="/tips-and-tricks/<%= game %>/new" method="POST">
+
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" style="resize: none" required>
+
+    <label for="content">Content:</label>
+    <textarea id="content" name="content" rows="10" style="resize: none" required></textarea>
+
+    <button type="submit">Submit</button>
+</form>
+
+<div class="login-button"><a href="/tips-and-tricks/<%= game %>">Back to Game Details</a></div>
+
+
+
+<%- include('../partials/footer') %>

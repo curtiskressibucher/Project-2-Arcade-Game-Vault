@@ -9,6 +9,7 @@ module.exports = {
     search,
     edit,
     updateReview,
+    like,
 };
 
 async function index(req, res, next) {
@@ -133,6 +134,25 @@ async function search(req, res, next) {
             reviews,
             title: 'Search Results',
         });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function like(req, res, next) {
+    try {
+        const gameId = req.params.gameId;
+        const reviewId = req.params.reviewId;
+
+        const review = await Review.findByIdAndUpdate(
+            reviewId,
+            { $inc: { likes: 1 } },
+            { new: true }
+        );
+
+        console.log(review);
+
+        res.redirect(`/reviews/${gameId}`);
     } catch (error) {
         next(error);
     }
