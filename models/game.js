@@ -26,7 +26,6 @@ const GameSchema = new Schema(
                 'educational',
                 'augmented_reality',
             ],
-            required: true,
         },
         platform: {
             type: String,
@@ -38,7 +37,6 @@ const GameSchema = new Schema(
                 'Mobile',
                 'Virtual Reality',
             ],
-            required: true,
         },
         releaseYear: {
             type: Date,

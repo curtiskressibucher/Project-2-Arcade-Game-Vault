@@ -4,6 +4,7 @@ const gameController = require('../controllers/gameCNTLR');
 const ensureLoggedIn = require('../config/ensureLoggedin');
 
 router.get('/', gameController.index);
+
 router.get('/search', ensureLoggedIn, gameController.search);
 
 router.get('/new', ensureLoggedIn, gameController.new);

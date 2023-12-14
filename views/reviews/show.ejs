@@ -8,21 +8,24 @@
         alt="<%= game.title %> Cover Image"
     />
 
-    <p>Genre: <%= game.genre %></p>
-    <p>Platform: <%= game.platform %></p>
-    <p>Release Year: <%= game.releaseYear.getFullYear() %></p>
-    <div class="arverage-rating">
+    <div class="details">
+        <p>Genre: <%= game.genre %></p>
+        <p>Platform: <%= game.platform %></p>
+        <p>Release Year: <%= game.releaseYear.getFullYear() %></p>
+        <div class="arverage-rating">
 
-        <% if (game.reviews && game.reviews.length > 0) { %>
-        <% let totalRating= 0; %>
-        <% game.reviews.forEach(review => { %>
-        <% totalRating +=review.rating; %>
-        <% }) %>
-        <% const averageRating = totalRating / game.reviews.length; %>
-        <p><%= averageRating.toFixed(0) %> / 5</p>
-        <% } %>
+            <% if (game.reviews && game.reviews.length > 0) { %>
+            <% let totalRating= 0; %>
+            <% game.reviews.forEach(review => { %>
+            <% totalRating +=review.rating; %>
+            <% }) %>
+            <% const averageRating = totalRating / game.reviews.length; %>
+            <p><%= averageRating.toFixed(0) %> / 5</p>
+            <% } %>
 
+        </div>
     </div>
+
 </div>
 
 <section class="add-review">
@@ -115,6 +118,7 @@
                 <button type="submit" class="delete-button">Delete</button>
             </form>
             <% } %>
+
         </li>
         <% }) %>
     </ul>
