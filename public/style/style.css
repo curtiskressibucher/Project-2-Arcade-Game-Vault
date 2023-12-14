@@ -524,6 +524,15 @@ input {
     color: #fff;
 }
 
+select {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
 .submit-buttons {
     cursor: pointer;
     background-color: #3a3a3a;
@@ -549,6 +558,7 @@ input {
     border-radius: 10px;
     padding: 0;
     border: 1px solid white;
+    background-color: #000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -940,10 +950,6 @@ h2 {
 .rating-stars input:checked ~ label {
     color: #fcd203;
 }
-
-
-
-
 
 /* ---------------------------------------------------------------------------------------------- */
 /* Responsive Styles  */

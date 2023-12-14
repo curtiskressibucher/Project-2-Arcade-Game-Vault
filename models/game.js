@@ -9,10 +9,35 @@ const GameSchema = new Schema(
         },
         genre: {
             type: String,
+            enum: [
+                'fps',
+                'rpg',
+                'adventure',
+                'simulation',
+                'strategy',
+                'sports',
+                'fighting',
+                'platformers',
+                'survival_horror',
+                'stealth',
+                'interactive_movie',
+                'puzzlers_party',
+                'social_deduction',
+                'educational',
+                'augmented_reality',
+            ],
             required: true,
         },
         platform: {
             type: String,
+            enum: [
+                'PC',
+                'PlayStation',
+                'Xbox',
+                'Nintendo Switch',
+                'Mobile',
+                'Virtual Reality',
+            ],
             required: true,
         },
         releaseYear: {
@@ -21,7 +46,6 @@ const GameSchema = new Schema(
         },
         image: {
             type: String,
-            required: true,
         },
         user: {
             type: Schema.Types.ObjectId,

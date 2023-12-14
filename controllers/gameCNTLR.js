@@ -45,10 +45,8 @@ async function create(req, res, next) {
     try {
         const { title, genre, platform, releaseYear, image } = req.body;
 
-        if (image && image.toLowerCase().includes('gif')) {
-            return res
-                .status(400)
-                .send('Invalid image URL. GIFs are not allowed.');
+        if (image && image.toLowerCase().includes('gif', 'png')) {
+            return res.send('Invalid image URL. GIFs are not allowed.');
         }
 
         const newGame = new Game({
