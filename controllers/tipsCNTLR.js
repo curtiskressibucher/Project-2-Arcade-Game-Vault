@@ -8,9 +8,13 @@ module.exports = {
     show,
     new: newTip,
     create,
+    edit,
+    updateTip,
+    delete: deleteTip,
     like,
     showTip,
     addComment,
+    deleteComment,
 };
 
 async function index(req, res, next) {
@@ -33,7 +37,7 @@ async function search(req, res, next) {
             title: { $regex: new RegExp(query, 'i') },
         });
 
-        res.render('tips/tipsIndex.ejs.ejs', {
+        res.render('tips/tipsIndex.ejs', {
             games,
             title: 'Search Results',
         });
@@ -109,6 +113,56 @@ async function like(req, res, next) {
     }
 }
 
+async function edit(req, res, next) {
+    try {
+        const gameId = req.params.gameId;
+        const tipId = req.params.tipId;
+
+        const game = await Game.findById(gameId);
+        const tip = await Tip.findById(tipId);
+
+        res.render('tips/editTip.ejs', { tip, game, title: 'Edit Tip' });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function updateTip(req, res, next) {
+    try {
+        const gameId = req.params.gameId;
+        const tipId = req.params.tipId;
+
+        const { title, content } = req.body;
+
+        const game = await Game.findById(gameId);
+        const tip = await Tip.findById(tipId);
+
+        tip.title = title;
+        tip.content = content;
+
+        await tip.save();
+
+        res.redirect(`/tips-and-tricks/${gameId}`);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function deleteTip(req, res, next) {
+    try {
+        const tipId = req.params.tipId;
+        const tip = await Tip.findById(tipId);
+
+        const gameId = tip.game;
+
+        await Tip.findByIdAndDelete(tipId);
+
+        res.redirect(`/tips-and-tricks/${gameId}`);
+    } catch (error) {
+        next(error);
+    }
+}
+
 async function showTip(req, res, next) {
     try {
         const tipId = req.params.tipId;
@@ -134,6 +188,24 @@ async function addComment(req, res, next) {
         };
 
         await Tip.findByIdAndUpdate(tipId, { $push: { comments: comment } });
+
+        res.redirect(`/tips-and-tricks/${gameId}/${tipId}/tip`);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function deleteComment(req, res, next) {
+    try {
+        const gameId = req.params.gameId;
+        const tipId = req.params.tipId;
+        const commentId = req.params.commentId;
+
+        await Tip.findByIdAndUpdate(
+            tipId,
+            { $pull: { comments: { _id: commentId } } },
+            { new: true }
+        );
 
         res.redirect(`/tips-and-tricks/${gameId}/${tipId}/tip`);
     } catch (error) {

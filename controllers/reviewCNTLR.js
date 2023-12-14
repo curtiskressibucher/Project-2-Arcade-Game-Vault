@@ -118,6 +118,7 @@ async function deleteReview(req, res, next) {
         next(error);
     }
 }
+
 async function search(req, res, next) {
     try {
         const query = req.query.query;

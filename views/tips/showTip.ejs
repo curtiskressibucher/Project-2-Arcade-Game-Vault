@@ -35,9 +35,26 @@
             <ul class="comments-list">
                 <% tip.comments.forEach(comment => { %>
                     <li class="comment">
+                        <!-- Comment content -->
                         <p class="comment-text"><%= comment.text %></p>
-                        <p class="comment-user">By: <%= tip.user.name %> <img class="review-avatar" src="<%= tip.user.avatar %>" alt=""></p>
-                       <p class="comment-time">Posted at: <%= comment.createdAt.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }) %></p>
+
+                        <!-- Comment user information including delete button -->
+                        <div class="comment-user-container">
+                            <p class="comment-user">By: <%= tip.user.name %> <img class="review-avatar" src="<%= tip.user.avatar %>" alt=""></p>
+
+                          <% if(user) {%>
+                            <form
+                                class="delete-form-review"
+                                method="post"
+                                action="/tips-and-tricks/<%= tip.game %>/<%= tip._id %>/<%= comment._id %>?_method=DELETE"
+                                onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                            <% } %>
+                        </div>
+
+                        <!-- Comment timestamp -->
+                        <p class="comment-time">Posted at: <%= comment.createdAt.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }) %></p>
                     </li>
                 <% }); %>
             </ul>

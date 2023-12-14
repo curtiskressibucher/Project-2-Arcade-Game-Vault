@@ -1,14 +1,21 @@
 <%- include('../partials/header') %>
 
-<h2>Create a Tip to help players</h2>
+<h2>Edit Tip</h2>
 
 <form
     class="tips-and-tricks-form"
-    action="/tips-and-tricks/<%= game %>/new"
+    action="/tips-and-tricks/<%= game._id %>/<%= tip._id %>/update"
     method="POST"
 >
     <label for="title">Title:</label>
-    <input type="text" id="title" name="title" style="resize: none" required />
+    <input
+        type="text"
+        id="title"
+        name="title"
+        style="resize: none"
+        value="<%= tip.title %>"
+        required
+    />
 
     <label for="content">Content:</label>
     <textarea
@@ -17,13 +24,15 @@
         rows="10"
         style="resize: none"
         required
-    ></textarea>
+    >
+<%= tip.content %></textarea
+    >
 
     <button type="submit">Submit</button>
 </form>
 
 <div class="login-button">
-    <a href="/tips-and-tricks/<%= game %>">Back to Game Details</a>
+    <a href="/tips-and-tricks/<%= game._id %>">Back to Game Details</a>
 </div>
 
 <%- include('../partials/footer') %>
