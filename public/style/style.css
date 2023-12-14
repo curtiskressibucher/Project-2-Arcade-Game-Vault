@@ -1031,6 +1031,7 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
 }
 
 /* Style for each tip table */
@@ -1051,7 +1052,6 @@ h2 {
     padding: 15px;
     position: relative;
     border-radius: 10px;
-    flex-shrink: 0;
 }
 
 .tips-list li .tip-title a {

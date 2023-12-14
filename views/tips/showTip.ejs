@@ -2,9 +2,6 @@
 
 <h2>Tips And Tricks</h2>
 
-
-
-
     <div class="tip-container">
         <div class="inline-top">
             <h3 class="tip-title"><%= tip.title %></h3>
@@ -31,29 +28,29 @@
         <div class="login-button"><a href="/login">LOGIN</a></div>
         <% } %>
 
+
+
         <% if (tip.comments && tip.comments.length > 0) { %>
             <ul class="comments-list">
                 <% tip.comments.forEach(comment => { %>
                     <li class="comment">
-                        <!-- Comment content -->
+
                         <p class="comment-text"><%= comment.text %></p>
-
-                        <!-- Comment user information including delete button -->
                         <div class="comment-user-container">
-                            <p class="comment-user">By: <%= tip.user.name %> <img class="review-avatar" src="<%= tip.user.avatar %>" alt=""></p>
-
-                          <% if(user) {%>
-                            <form
-                                class="delete-form-review"
-                                method="post"
-                                action="/tips-and-tricks/<%= tip.game %>/<%= tip._id %>/<%= comment._id %>?_method=DELETE"
-                                onsubmit="return confirm('Are you sure you want to delete this comment?');">
-                                <button type="submit" class="delete-button">Delete</button>
-                            </form>
+                            <p class="comment-user">By: <%= comment.user.name %>
+                                <img class="review-avatar" src="<%= comment.user.avatar %>" alt="">
+                            </p>
+                            <% if (user && user._id.equals(comment.user._id)) { %>
+                                <form class="delete-form-review"
+                                    method="post"
+                                    action="/tips-and-tricks/<%= tip.game %>/<%= tip._id %>/<%= comment._id %>?_method=DELETE"
+                                    onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                    <button type="submit" class="delete-button">Delete</button>
+                                </form>
                             <% } %>
                         </div>
 
-                        <!-- Comment timestamp -->
+
                         <p class="comment-time">Posted at: <%= comment.createdAt.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }) %></p>
                     </li>
                 <% }); %>
@@ -63,8 +60,6 @@
         <% } %>
     </div>
 </div>
-
-
 
 
 <%- include('../partials/footer') %>a

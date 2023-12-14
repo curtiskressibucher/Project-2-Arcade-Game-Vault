@@ -32,7 +32,10 @@ async function show(req, res, next) {
     try {
         const gameId = req.params.gameId;
 
-        const game = await Game.findById(gameId).populate('reviews');
+        const game = await Game.findById(gameId).populate({
+            path: 'reviews',
+            options: { sort: { createdAt: -1 } },
+        });
 
         res.render('reviews/show.ejs', { game, title: game.title });
     } catch (error) {

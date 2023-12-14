@@ -101,6 +101,7 @@ async function like(req, res, next) {
         const gameId = req.params.gameId;
         const tipId = req.params.tipId;
 
+        //$inc is an update operator in MongoDB that increments the value of the specified field.
         const tip = await Tip.findByIdAndUpdate(
             tipId,
             { $inc: { likes: 1 } },
@@ -167,9 +168,13 @@ async function showTip(req, res, next) {
     try {
         const tipId = req.params.tipId;
 
-        const tip = await Tip.findById(tipId).populate('user');
+        const tip = await Tip.findById(tipId).populate('user').populate({
+            path: 'comments.user',
+        });
 
-        res.render('tips/showTip.ejs', { tip, title: 'T' });
+        tip.comments.sort((a, b) => b.createdAt - a.createdAt);
+
+        res.render('tips/showTip.ejs', { tip, title: 'Tip' });
     } catch (error) {
         next(error);
     }
