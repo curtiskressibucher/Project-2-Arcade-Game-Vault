@@ -74,9 +74,13 @@ Here is where my Ice box lands. What is next for this app.
 
 -   Adding the ablity to chat to other users, as well as more/better comment sections to feel more interative.
 
+-   Adding more regex expressions to ensure users can't just input whatever they want in the fields.
+
 ## Learning along the way
 
 I think learning along the way is almost inevitable when creating something. Here are just some of the things I learned.
+
+-   Learning how to implement and use OAuth with services other than Google. Although there are many possibilities with Discord, to meet the deadline, I opted for the basic level of OAuth integration.
 
 -   Building and curating a search bar was something I hadn't done before, but after a bit of research, I created this.
 

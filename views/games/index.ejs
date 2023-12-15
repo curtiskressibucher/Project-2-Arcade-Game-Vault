@@ -38,11 +38,11 @@
 
                 <div class="action-buttons">
                     <a href="/games/<%= game.id %>/edit" class="edit-button">Edit</a>
-                    <form class="delete-form-review" action="/games/<%= game.id %>?_method=DELETE" method="POST" onsubmit="return confirmDelete();">
-                        <button type="submit" class="delete-button">
-                            Delete
-                        </button>
-                    </form>
+                        <form class="delete-form-review" action="/games/<%= game.id %>?_method=DELETE" method="POST" onsubmit="return confirmDelete(this);">
+                            <button type="submit" class="delete-button">
+                                Delete
+                            </button>
+                        </form>
                     <div class="action-buttons">
                         <% const firstGameTitle = games.find(g => g.title === game.title); %>
                         <% if (firstGameTitle) { %>

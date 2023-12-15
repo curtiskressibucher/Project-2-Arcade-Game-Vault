@@ -66,7 +66,7 @@
                                 <form class="delete-form-review"
                                     method="post"
                                     action="/tips-and-tricks/<%= tip.game %>/<%= tip._id %>/<%= comment._id %>?_method=DELETE"
-                                    onsubmit="return confirmDelete();">
+                                    onsubmit="return confirmDelete(this);">
 
                                     <button type="submit" class="delete-button">
                                         Delete

@@ -22,11 +22,6 @@ const tipsSchema = new Schema(
             ref: 'Game',
             required: true,
         },
-        tags: [
-            {
-                type: String,
-            },
-        ],
         likes: {
             type: Number,
             default: 0,

@@ -103,7 +103,7 @@
                         <a href="/reviews/<%= game._id %>/<%= review._id %>/update" class="edit-button">Edit</a>
                     </div>
 
-                    <form class="delete-form-review" method="post" action="/reviews/<%= review._id %>?_method=DELETE" onsubmit="return confirmDelete();">
+                    <form class="delete-form-review" method="post" action="/reviews/<%= review._id %>?_method=DELETE" onsubmit="return confirmDelete(this);">
                         <button type="submit" class="delete-button">
                             Delete
                         </button>
