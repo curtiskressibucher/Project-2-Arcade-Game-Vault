@@ -1,22 +1,21 @@
 <%- include('../partials/header') %>
 
 <div class="game-details">
+
     <h1><%= game.title %></h1>
-    <img
-        class="game-image"
-        src="<%= game.image %>"
-        alt="<%= game.title %> Cover Image"
-    />
+    <img class="game-image" src="<%= game.image %>" alt="<%= game.title %> Cover Image"/>
 
     <div class="details">
+
         <p>Genre: <%= game.genre %></p>
         <p>Platform: <%= game.platform %></p>
         <p>Release Year: <%= game.releaseYear.getFullYear() %></p>
 
-
-        </div>
     </div>
+
 </div>
+
+
 
 <% if(user) {%>
  <div class="login-button">
@@ -30,6 +29,7 @@
 
 
 <div class="tips-list">
+
     <h2>Tips and Tricks</h2>
 
     <% if (game.tips && game.tips.length > 0) { %>
@@ -37,7 +37,6 @@
             <% game.tips.forEach(tip => { %>
 
                 <li class="tip-table">
-
                     <div class="tip-title">
                         <a href="/tips-and-tricks/<%= game._id %>/<%= tip._id %>/tip">
                             <%= tip.title %>
@@ -48,40 +47,36 @@
                         <div class="tip-description"><%= tip.content %></div>
                     <% } %>
 
-            <div class="tip-buttons">
-                    <div class="tip-like">
-                        <form
-                            class="like-form-tip"
-                            method="post"
-                            action="/tips-and-tricks/<%= game._id  %>/<%= tip._id %>/like">
-                            <button type="submit" class="like-button"> 👍 <%= tip.likes %></button>
-                        </form>
-                    </div>
-
-
-                    <div class="edit-delete-container">
-
-                        <% if (user && user._id.equals(tip.user)) { %>
-
-                            <div class="edit-form-review">
-                                <a href="/tips-and-tricks/<%= game._id %>/<%= tip._id %>/update" class="edit-button">Edit</a>
+                    <div class="tip-buttons">
+                            <div class="tip-like">
+                                <form
+                                    class="like-form-tip"
+                                    method="post"
+                                    action="/tips-and-tricks/<%= game._id  %>/<%= tip._id %>/like">
+                                    <button type="submit" class="like-button"> 👍 <%= tip.likes %></button>
+                                </form>
                             </div>
 
-                            <form
-                                class="delete-form-review"
-                                method="post"
-                                action="/tips-and-tricks/<%= game.id %>/<%= tip._id %>?_method=DELETE"
-                                onsubmit="return confirm('Are you sure you want to delete this tip?');">
 
-                                <button type="submit" class="delete-button">Delete</button>
-                            </form>
+                        <div class="edit-delete-container">
 
-                    <% } %>
+                                <% if (user && user._id.equals(tip.user)) { %>
 
+                                    <div class="edit-form-review">
+                                        <a href="/tips-and-tricks/<%= game._id %>/<%= tip._id %>/update" class="edit-button">Edit</a>
+                                    </div>
+
+                                    <form
+                                        class="delete-form-review"
+                                        method="post"
+                                        action="/tips-and-tricks/<%= game.id %>/<%= tip._id %>?_method=DELETE"
+                                        onsubmit="return confirmDelete();">
+
+                                        <button type="submit" class="delete-button">Delete</button>
+                                    </form>
+                            <% } %>
+                        </div>
                     </div>
-
-            </div>
-
                 </li>
             <% }) %>
         </ul>

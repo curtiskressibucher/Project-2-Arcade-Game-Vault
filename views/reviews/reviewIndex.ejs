@@ -18,15 +18,16 @@
 </div>
 
 <div class="game-library">
-    <%
-    const duplicateTitles = {};
-    if (games.length > 0) {
-        games.forEach(function(game) {
-            const spaceInTitle = game.title.trim();
 
-            if (!duplicateTitles[spaceInTitle]) {
-                duplicateTitles[spaceInTitle] = true;
-    %>
+    <!-- Removes all the duplicate games in the library, ensuring that the user can have their own unique games while the original game exists here.  -->
+    <% const duplicateTitles = {};  %>
+    <% if (games.length > 0) {  %>
+        <% games.forEach(function(game) {  %>
+            <!-- Space in title ensures that it can find the game even with spaces -->
+           <%  const spaceInTitle = game.title.trim();  %>
+            <% if (!duplicateTitles[spaceInTitle]) {  %>
+               <%  duplicateTitles[spaceInTitle] = true;  %>
+
     <div class="game-tile">
         <img src="<%= game.image %>" alt="<%= spaceInTitle %> Image" />
 
@@ -41,19 +42,20 @@
 
             <div class="review-action-buttons">
                 <a class="review-button" href="/reviews/<%= game._id %>">REVIEW</a>
-                <% if (user) { %>
-            <form class="add-button-form" action="/games/add-to-vault" method="POST">
-                <input type="hidden" name="reviewGameId" value="<%= game._id %>">
-                <button type="submit" class="add-to-vault">ADD</button>
-            </form>
+            <% if (user) { %>
+                <form class="add-button-form" action="/games/add-to-vault" method="POST">
+                    <input type="hidden" name="reviewGameId" value="<%= game._id %>">
+
+                    <button type="submit" class="add-to-vault">
+                        ADD
+                    </button>
+                </form>
             <% } %>
             </div>
         </div>
     </div>
-    <%
-            }
-        });
-    %>
+          <%   }  %>
+       <%  });  %>
     <% } else { %>
     <p>No matching games found.</p>
     <% } %>

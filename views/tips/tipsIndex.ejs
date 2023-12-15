@@ -5,38 +5,59 @@
 <div class="search-bar">
     <form action="/tips-and-tricks/search" method="GET">
         <div class="search-container">
-            <input
-                type="text"
-                name="query"
-                placeholder="Search for a game..."
-            />
+
+            <input type="text" name="query" placeholder="Search for a game..."/>
             <button type="submit" class="search-button">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
+
         </div>
     </form>
 </div>
 
 <div class="game-library">
-    <% const duplicateTitles = {}; if (games.length > 0) {
-    games.forEach(function(game) { const spaceInTitle = game.title.trim(); if
-    (!duplicateTitles[spaceInTitle]) { duplicateTitles[spaceInTitle] = true; %>
+
+     <!-- Removes all the duplicate games in the library, ensuring that the user can have their own unique games while the original game exists here.  -->
+    <% const duplicateTitles = {};  %>
+    <% if (games.length > 0) {  %>
+        <% games.forEach(function(game) {  %>
+             <!-- Space in title ensures that it can find the game even with spaces -->
+           <%  const spaceInTitle = game.title.trim();  %>
+            <% if (!duplicateTitles[spaceInTitle]) {  %>
+               <%  duplicateTitles[spaceInTitle] = true;  %>
+
     <a href="/tips-and-tricks/<%= game._id %>">
         <div class="game-tile">
             <img src="<%= game.image %>" alt="<%= spaceInTitle %> Image" />
 
             <div class="details">
-                <h3><%= spaceInTitle %></h3>
-                <p><strong>Genre:</strong> <%= game.genre %></p>
-                <p><strong>Platform:</strong> <%= game.platform %></p>
+                <h3>
+                    <%= spaceInTitle %>
+                </h3>
                 <p>
-                    <strong>Release Year:</strong> <%=
-                    game.releaseYear.toISOString().split('T')[0] %>
+                    <strong>
+                        Genre:
+                    </strong>
+                    <%= game.genre %>
+                </p>
+                <p>
+                    <strong>
+                        Platform:
+                    </strong>
+                    <%= game.platform %>
+                </p>
+                <p>
+                    <strong>
+                        Release Year:
+                    </strong>
+                    <%= game.releaseYear.toISOString().split('T')[0] %>
                 </p>
             </div>
         </div>
     </a>
-    <% } %> <% }); %> <% } else { %>
+    <% } %>
+    <% }); %>
+ <% } else { %>
     <p>No matching games found.</p>
     <% }; %>
 </div>

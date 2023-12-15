@@ -3,55 +3,81 @@
 <h2>Tips And Tricks</h2>
 
     <div class="tip-container">
+
         <div class="inline-top">
-            <h3 class="tip-title"><%= tip.title %></h3>
+            <h3 class="tip-title">
+                <%= tip.title %>
+            </h3>
+
             <strong class="username-stars">
                 <%= tip.user.name %>
                 <img class="review-avatar" src="<%= tip.user.avatar %>" alt="Avatar">
             </strong>
         </div>
-        <p class="tip-content"><%= tip.content %></p>
+
+        <p class="tip-content">
+            <%= tip.content %>
+        </p>
+
     </div>
 
     <div>
+
+         <div class="login-button"><a href="/tips-and-tricks">BACK TO TIPS LIBRARY</a></div>
+
         <h2>Comments:</h2>
+
     <% if(user) { %>
+
         <form class="comment-form" action="/tips-and-tricks/<%= tip.game %>/<%= tip._id %>/comment" method="post">
-            <label for="commentText">Add a comment:</label>
-            <textarea class="comment-textarea" name="commentText" id="commentText" rows="6"
-            style="resize: none"
-            maxlength="300"
-            requiredrequired></textarea>
-            <button class="submit-buttons" type="submit">Submit Comment</button>
+
+            <label for="commentText">
+                Add a comment:
+            </label>
+
+                <textarea class="comment-textarea" name="commentText" id="commentText" rows="6" style="resize: none" maxlength="300" requiredrequired></textarea>
+
+            <button class="submit-buttons" type="submit">
+                Submit Comment
+            </button>
         </form>
+
     <% }else { %>
         <div class="login-button"><a href="/login">LOGIN</a></div>
-        <% } %>
-
-
+    <% } %>
 
         <% if (tip.comments && tip.comments.length > 0) { %>
+
             <ul class="comments-list">
                 <% tip.comments.forEach(comment => { %>
-                    <li class="comment">
 
-                        <p class="comment-text"><%= comment.text %></p>
+                    <li class="comment">
+                        <p class="comment-text"><%= comment.text %>
+                        </p>
+
                         <div class="comment-user-container">
-                            <p class="comment-user">By: <%= comment.user.name %>
+                            <p class="comment-user">
+                                By: <%= comment.user.name %>
                                 <img class="review-avatar" src="<%= comment.user.avatar %>" alt="">
                             </p>
+
                             <% if (user && user._id.equals(comment.user._id)) { %>
+
                                 <form class="delete-form-review"
                                     method="post"
                                     action="/tips-and-tricks/<%= tip.game %>/<%= tip._id %>/<%= comment._id %>?_method=DELETE"
-                                    onsubmit="return confirm('Are you sure you want to delete this comment?');">
-                                    <button type="submit" class="delete-button">Delete</button>
+                                    onsubmit="return confirmDelete();">
+
+                                    <button type="submit" class="delete-button">
+                                        Delete
+                                    </button>
                                 </form>
+
                             <% } %>
                         </div>
-
-
-                        <p class="comment-time">Posted at: <%= comment.createdAt.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }) %></p>
+                        <p class="comment-time">
+                            Posted at: <%= comment.createdAt.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }) %>
+                        </p>
                     </li>
                 <% }); %>
             </ul>

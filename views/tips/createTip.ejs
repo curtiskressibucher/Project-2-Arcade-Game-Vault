@@ -2,22 +2,13 @@
 
 <h2>Create a Tip to help players</h2>
 
-<form
-    class="tips-and-tricks-form"
-    action="/tips-and-tricks/<%= game %>/new"
-    method="POST"
->
+<form class="tips-and-tricks-form" action="/tips-and-tricks/<%= game %>/new" method="POST">
+
     <label for="title">Title:</label>
-    <input type="text" id="title" name="title" style="resize: none" required />
+    <input type="text" id="title" name="title" style="resize: none" required >
 
     <label for="content">Content:</label>
-    <textarea
-        id="content"
-        name="content"
-        rows="10"
-        style="resize: none"
-        required
-    ></textarea>
+    <textarea id="content" name="content" rows="10" style="resize: none" required></textarea>
 
     <button type="submit">Submit</button>
 </form>

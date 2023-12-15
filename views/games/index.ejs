@@ -6,11 +6,7 @@
     <div class="search-bar">
         <form class="searchBar" action="/games/search" method="GET">
             <div class="search-container">
-                <input
-                    type="text"
-                    name="query"
-                    placeholder="Search for game in vault"
-                />
+                <input type="text" name="query" placeholder="Search for game in vault"/>
                 <button type="submit" class="search-button">
                    <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -23,8 +19,11 @@
     </div>
 
     <div class="game-library">
-        <% if (games.length > 0) { %> <% games.forEach(function(game) { %> <% if
-        (game.user.toString() === user._id.toString()) { %>
+
+        <% if (games.length > 0) { %>
+        <% games.forEach(function(game) { %>
+        <% if (game.user.toString() === user._id.toString()) { %>
+
         <div class="game-tile">
             <img src="<%= game.image %>" alt="<%= game.title %> Image" />
 
@@ -39,11 +38,7 @@
 
                 <div class="action-buttons">
                     <a href="/games/<%= game.id %>/edit" class="edit-button">Edit</a>
-                    <form
-                        class="delete-form"
-                        action="/games/<%= game.id %>?_method=DELETE"
-                        method="POST"
-                        onsubmit="return confirm('Are you sure you want to delete this game?');">
+                    <form class="delete-form-review" action="/games/<%= game.id %>?_method=DELETE" method="POST" onsubmit="return confirmDelete();">
                         <button type="submit" class="delete-button">
                             Delete
                         </button>
