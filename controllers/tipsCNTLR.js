@@ -12,6 +12,7 @@ module.exports = {
     updateTip,
     delete: deleteTip,
     like,
+    // --------------------
     showTip,
     addComment,
     deleteComment,
@@ -26,6 +27,7 @@ async function index(req, res, next) {
             title: 'Tips And Tricks',
         });
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }
@@ -42,6 +44,7 @@ async function search(req, res, next) {
             title: 'Search Results',
         });
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }
@@ -54,6 +57,7 @@ async function show(req, res, next) {
 
         res.render('tips/show.ejs', { game, title: 'Tips and tricks' });
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }
@@ -67,6 +71,7 @@ async function newTip(req, res, next) {
             title: 'Create Tips And Tricks',
         });
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }
@@ -88,10 +93,12 @@ async function create(req, res, next) {
         await tip.save();
 
         // I was having an issue with getting tips to populate in the game. So, by using the $push operator, I can add the _id of the new tip to the game object.
+        //https://www.mongodb.com/docs/manual/reference/operator/update/push/#mongodb-update-up.-push
         await Game.findByIdAndUpdate(gameId, { $push: { tips: tip._id } });
 
         res.redirect(`/tips-and-tricks/${gameId}`);
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }
@@ -102,6 +109,7 @@ async function like(req, res, next) {
         const tipId = req.params.tipId;
 
         //$inc is an update operator in MongoDB that increments the value of the specified field.
+        // Similar to the 'like' functionality in reviews, this logic handles the process of incrementing likes
         const tip = await Tip.findByIdAndUpdate(
             tipId,
             { $inc: { likes: 1 } },
@@ -124,6 +132,7 @@ async function edit(req, res, next) {
 
         res.render('tips/editTip.ejs', { tip, game, title: 'Edit Tip' });
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }
@@ -145,6 +154,7 @@ async function updateTip(req, res, next) {
 
         res.redirect(`/tips-and-tricks/${gameId}`);
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }
@@ -160,9 +170,13 @@ async function deleteTip(req, res, next) {
 
         res.redirect(`/tips-and-tricks/${gameId}`);
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }
+
+// -------------------------------------------------------------------------------------------------------------------------------------
+// Separate the main tip page from comments on individual tips.
 
 async function showTip(req, res, next) {
     try {
@@ -176,6 +190,7 @@ async function showTip(req, res, next) {
 
         res.render('tips/showTip.ejs', { tip, title: 'Tip' });
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }
@@ -196,6 +211,7 @@ async function addComment(req, res, next) {
 
         res.redirect(`/tips-and-tricks/${gameId}/${tipId}/tip`);
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }
@@ -214,6 +230,7 @@ async function deleteComment(req, res, next) {
 
         res.redirect(`/tips-and-tricks/${gameId}/${tipId}/tip`);
     } catch (error) {
+        res.render('error.ejs');
         next(error);
     }
 }

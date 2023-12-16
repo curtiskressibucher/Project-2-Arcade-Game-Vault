@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 <body>
-    <h1>New Game</h1>
+    <h1>NEW GAME/h1>
 
    <form action="/games/new" method="POST">
     <label for="title">Title:</label>
@@ -36,12 +36,14 @@
     </select>
 
     <label for="releaseYear">Release Year:</label>
-    <input type="date" id="releaseYear" name="releaseYear" />
+    <input type="date" id="releaseYear" name="releaseYear" required />
 
-    <label for="image">Image URL:</label>
-    <input type="text" id="image" name="image" />
+    <label for="image">Image URL:
+        <p class="image-search-help">Please enter a valid image URL ending with .jpg</p>
+    </label>
+    <input type="text" id="image" name="image"  pattern=".*(?:videogame|game).*\.jpg$" title="Please enter a valid JPG image URL (ends with .jpg)"/>
 
-    <button class="submit-buttons" type="submit">Submit</button>
+    <button class="submit-buttons" type="submit">Submit New Game</button>
 </form>
 
 </body>

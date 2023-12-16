@@ -18,6 +18,9 @@ router.get('/login', (req, res) => {
     res.render('login.ejs');
 });
 
+// ---------------------------------------------------------------
+//Oauth routes
+
 router.get(
     '/auth/google',
     passport.authenticate('google', {

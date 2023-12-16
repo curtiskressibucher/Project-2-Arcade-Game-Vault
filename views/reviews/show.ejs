@@ -13,13 +13,13 @@
         <p>Platform: <%= game.platform %></p>
         <p>Release Year: <%= game.releaseYear.getFullYear() %></p>
         <div class="arverage-rating">
-
+           <!-- This logic takes the rating data from 1-5 (For users, it's stars) and converts them into an average out of 5. -->
             <% if (game.reviews && game.reviews.length > 0) { %>
             <% let totalRating= 0; %>
             <% game.reviews.forEach(review => { %>
             <% totalRating +=review.rating; %>
             <% }) %> <% const averageRating = totalRating / game.reviews.length; %>
-
+                <!-- It is displayed here out of 5 -->
             <p><%= averageRating.toFixed(0) %> / 5</p>
             <% } %>
         </div>

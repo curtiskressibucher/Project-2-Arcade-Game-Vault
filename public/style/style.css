@@ -130,7 +130,6 @@ h1 {
 /* ---------------------------------------------------------------------------------------------- */
 
 /* Reset and Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
 html,
 body,
@@ -164,6 +163,7 @@ body {
 
 /* ---------------------------------------------------------------------------------------------- */
 /* || Navigation Styles */
+
 .partial-nav {
     display: flex;
     justify-content: space-between;
@@ -320,8 +320,8 @@ header {
 /* Web Feature Styles */
 
 .web-feat {
-    height: 350px;
-    margin-top: 430px;
+    height: 25vh;
+    margin-top: 450px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -399,7 +399,8 @@ header {
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
-    margin-top: 240px;
+    margin-top: 200px;
+    align-self: flex-end;
     width: auto;
     transition: background-color 0.3s ease;
 }
@@ -455,6 +456,13 @@ footer {
 .new-game {
     display: flex;
     justify-content: center;
+}
+
+.image-search-help {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.581);
+    font-style: italic;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -708,6 +716,7 @@ select {
     margin: 20px auto;
     max-width: 800px;
 }
+
 /* ---------------------------------------------------------------------------------------------- */
 
 /*  || Login Table Styles */
@@ -1062,6 +1071,7 @@ h2 {
 }
 
 /* Style for the "No tips and tricks" message */
+
 .tips-list h2 {
     font-weight: bold;
     margin-top: 20px;
@@ -1381,7 +1391,7 @@ h2 {
     }
 
     .web-feat-button {
-        margin-top: 10px;
+        font-size: 12px;
     }
 }
 
@@ -1404,12 +1414,8 @@ h2 {
         justify-content: end;
     }
 
-    #game-vault,
-    #Reviews,
-    #Tips-Tricks {
-        width: 100%;
-        max-width: 100%;
-        margin: 10px 0;
+    #button-display {
+        z-index: -10;
     }
 }
 

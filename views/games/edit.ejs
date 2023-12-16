@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 
 <body>
-    <h1>Edit Game</h1>
+    <h1>EDIT GAME</h1>
     <form action="/games/<%= game._id %>/edit" method="POST">
 
         <label for="title">Title:</label>
@@ -16,8 +16,11 @@
         <label for="releaseYear">Release Year:</label>
         <input type="date" id="releaseYear" name="releaseYear" value="<%= game.releaseYear %>" required>
 
-        <label for="image">Image URL:</label>
-        <input type="text" id="image" name="image" value="<%= game.image %>" required>
+        <label for="image">Image URL:
+        <p class="image-search-help">Please enter a valid image URL ending with .jpg</p>
+        </label>
+        <input type="text" id="image" name="image" value="<%= game.image %>" pattern=".*\jpg$" title="Please enter a valid JPG image URL (ends with .jpg)"/>
+
 
         <button type="submit" class="submit-buttons">Update Game</button>
     </form>

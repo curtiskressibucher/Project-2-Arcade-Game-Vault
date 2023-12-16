@@ -1,3 +1,4 @@
+// Burger menu icon and drop down.
 document.addEventListener('DOMContentLoaded', function () {
     const burgerMenu = document.querySelector('.burger-menu');
     const dropdownMenu = document.querySelector('.dropdown-menu');
@@ -8,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// POP up window for the delete buttons. Using the DOM
 function confirmDelete(form) {
     //Creating the classes for styling. Pop up components
     const overlay = document.createElement('div');
